@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
 
-
 *{
     margin: 0;
     padding: 0;
@@ -27,7 +26,7 @@ html{
 
 /* ---------------------------------- Laptops and Desktops ------------------------- */
 
-@media (min-width: 1200px){
+@media (min-width: 1206px){
 
 .max-width{
     max-width: 1300px;
@@ -35,11 +34,18 @@ html{
     margin: auto;
 }
 
-.fre{
+.imp, .sys, .blk, .blk1, .fourier, .haar, .footer{
   font-family: 'Poppins', sans-serif;
 }
 
-.fre{
+.imp .imp-content,
+.sys .sys-content,
+.mva .mva-content,
+.blk .blk-content,
+.blk1 .blk1-content,
+.blok .blok-content,
+.fourier .fourier-content,
+.haar .haar-content{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -56,14 +62,223 @@ section .title{
   font-family: 'Ubuntu', sans-serif;
 }
 
-.fre{
+.imp{
   display: flex;
   color: #000000; /* Color of Name, and moving text in first page*/
   background-size: cover;
   background-attachment: fixed;
   font-family: 'Ubuntu', sans-serif;
 }
-.fre .t{
+.imp .imp-content .left{
+  width: 40%;
+  margin-top: 10%;
+}
+.imp .imp-content .left .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.imp .imp-content .left1{
+  width: 20%;
+  margin-top: -10%;
+}
+.imp .imp-content .left1 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.imp .imp-content .left2{
+  width: 20%;
+  margin-top: -10%;
+}
+.imp .imp-content .left2 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.imp .imp-content .middle{
+  width: 30%;
+}
+.imp .imp-content .middle .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+.imp .imp-content .right{
+  width: 30%;
+}
+.imp .imp-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+
+.imp .imp-content1 .left{
+  width: 40%;
+  margin-top: -32%;
+  margin-left: 4%;
+}
+.imp .imp-content1 .left .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.sys{
+  display: flex;
+  color: #000000; /* Color of Name, and moving text in first page*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.sys .sys-content .left{
+  width: 30%;
+  margin-top: 10%;
+}
+.sys .sys-content .left .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.sys .sys-content .left1{
+  width: 30%;
+  margin-left: -10%;
+}
+.sys .sys-content .left1 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.sys .sys-content .left2{
+  width: 30%;
+  margin-top: -28%;
+}
+.sys .sys-content .left2 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.sys .sys-content .right{
+  width: 40%;
+}
+.sys .sys-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+
+.mva{
+  display: flex;
+  color: #000000; /* Color of Name, and moving text in first page*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.mva .mva-content .left{
+  width: 30%;
+  margin-top: 10%;
+}
+.mva .mva-content .left .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.mva .mva-content .left1{
+  width: 30%;
+  margin-left: -10%;
+}
+.mva .mva-content .left1 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.mva .mva-content .left2{
+  width: 30%;
+  margin-top: -18%;
+}
+.mva .mva-content .left2 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.mva .mva-content .right{
+  width: 40%;
+}
+.mva .mva-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+
+.blk{
+  display: flex;
+  color: #000000; /* Color of Name, and moving text in first page*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.blk .blk-content .left{
+  width: 30%;
+  margin-top: 10%;
+}
+.blk .blk-content .left .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blk .blk-content .left1{
+  width: 30%;
+  margin-left: -10%;
+}
+.blk .blk-content .left1 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blk .blk-content .left2{
+  width: 30%;
+  margin-top: -10%;
+}
+.blk .blk-content .left2 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blk .blk-content .right{
+  width: 40%;
+}
+.blk .blk-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+
+.blk1{
+  display: flex;
+  color: #000000; /* Color of Name, and moving text in first page*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.blk1 .t{
   position: relative;
   text-align: center;
   color: #000000;
@@ -71,450 +286,626 @@ section .title{
   font-weight: 500;
   margin-top: 0%;
   font-family: 'Ubuntu', sans-serif;
-}
-
-.box1 {
-  position: relative;
-  margin-top: 70%;
-  margin-left: 15%;
-  margin-bottom: -40%;
-  transform: translate(-50%, -50%);
-  width: 130%;
-}
-
-.box1 select {
-  background-color: #98CB3B;
-  color: white;
-  padding: 12px;
   width: 100%;
-  border-style: solid;
-  border-width: 100px;
-  border-block-color: #176696;
-  border-block-start-color: #176696;
-  border-top-color: #176696;
-  border-color: #176696;
-  font-size: 20px;
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
 }
-
-.box1::before {
-  content: "\f13a";
-  font-family: 'Ubuntu', sans-serif;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20%;
-  height: 100%;
-  text-align: center;
-  font-size: 28px;
-  line-height: 45px;
-  color: #176696;
-  background-color: #176696;
-  pointer-events: none;
+.blk1 .blk1-content{
+  margin-bottom: -10%;
 }
-
-.box1:hover::before {
-  color: #176696;
-  background-color: #176696;
-}
-
-.box1 select option {
-  padding: 30px;
-}
-
-.fill {
-  position: relative;
-  margin-left: 20%;
-  margin-top: 20%;
-  top: 0%;
-  left: 0%;
-  transform: translate(-50%, -50%);
-}
-.fill1 {
-  position: relative;
-  margin-left: 10%;
-  margin-top: 40%;
-  top: 0%;
-  left: 0%;
-  transform: translate(-50%, -50%);
-  float: left;
-}
-.fill2 {
-  position: relative;
-  margin-left: 10%;
-  margin-top: 20%;
-  top: 0%;
-  left: 0%;
-  transform: translate(-50%, -50%);
-  float: left;
-}
-
-.box {
-  position: relative;
-  margin-left: -10%;
-  margin-right: 20%;
-  margin-top: 40%;
-  transform: translate(-50%, -50%);
-}
-
-.box select {
-  background-color: #98CB3B;
-  color: white;
-  padding: 12px;
-  width: 100%;
-  border: none;
-  font-size: 20px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
-}
-
-.box::before {
-  content: "\f13a";
-  font-family: 'Ubuntu', sans-serif;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20%;
-  height: 100%;
-  text-align: center;
-  font-size: 28px;
-  line-height: 45px;
-  color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(255, 255, 255, 0.1);
-  pointer-events: none;
-}
-
-.box:hover::before {
-  color: rgba(255, 255, 255, 0.6);
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.box select option {
-  padding: 30px;
-}
-
-.figureLast{
-  margin-left: -50%;
-}
-
-}
-
-/* ----------------------------------------- Big Tabs ------------------------------------------ */
-
-@media (max-width: 1200px) and (min-width: 768px){
-
-  
-  .max-width{
-    max-width: 1024px;
-    padding: 0 40px;
-    margin: auto;
-  }
-  
-  .fre{
-  font-family: 'Poppins', sans-serif;
-  }
-  
-  .fre{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  } /* change orientations here */
-  
-  section .title{
-  position: relative;
-  text-align: center;
-  color: #000000;
-  font-size: 40px;
-  font-weight: 500;
+.blk1 .blk1-content .left{
+  width: 40%;
   margin-top: 10%;
-  width: 80%;
-  font-family: 'Ubuntu', sans-serif;
+}
+.blk1 .blk1-content .left .input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blk1 .blk1-content .left .img{
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.blk1 .blk1-content .middle{
+  width: 20%;
+  margin-top: 10%;
+}
+.blk1 .blk1-content .middle1{
+  width: 20%;
+  margin-top: 10%;
+}
+.blk1 .blk1-content .right{
+  width: 40%;
+  margin-top: -10%;
+}
+.blk1 .blk1-content .right1{
+  width: 40%;
+  margin-top: -10%;
+}
+.blk1 .blk1-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+.blk1 .blk1-content .right1 .img{
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  border-radius: 6px;
   }
-  
-  .fre{
+.blk1 .blk1-content .right .input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blk1 .blk1-content .right2{
+  width: 40%;
+  margin-top: -10%;
+}
+.blk1 .blk1-content .right2 .input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.blok{
   display: flex;
   color: #000000; /* Color of Name, and moving text in first page*/
   background-size: cover;
   background-attachment: fixed;
   font-family: 'Ubuntu', sans-serif;
-  }
-  .fre .t{
-    position: relative;
-    text-align: center;
-    color: #000000;
-    font-size: 40px;
-    font-weight: 500;
-    margin-top: 10%;
-    font-family: 'Ubuntu', sans-serif;
-  }
-  
-  .box1 {
-    position: relative;
-    margin-top: 130%;
-    margin-left: 55%;
-    margin-bottom: -40%;
-    transform: translate(-50%, -50%);
-    width: 130%;
-  }
-  
-  .box1 select {
-    background-color: #98CB3B;
-    color: white;
-    padding: 12px;
-    width: 100%;
-    border-style: solid;
-    border-width: 100px;
-    border-block-color: #176696;
-    border-block-start-color: #176696;
-    border-top-color: #176696;
-    border-color: #176696;
-    font-size: 20px;
-    -webkit-appearance: button;
-    appearance: button;
-    outline: none;
-  }
-  
-  .box1::before {
-    content: "\f13a";
-    font-family: 'Ubuntu', sans-serif;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    text-align: center;
-    font-size: 28px;
-    line-height: 45px;
-    color: #176696;
-    background-color: #176696;
-    pointer-events: none;
-  }
-  
-  .box1:hover::before {
-    color: #176696;
-    background-color: #176696;
-  }
-  
-  .box1 select option {
-    padding: 30px;
-  }
-  
-  .fill {
-    position: relative;
-    margin-left: 20%;
-    margin-top: 20%;
-    top: 0%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-  }
-  .fill1 {
-    position: relative;
-    margin-left: 25%;
-    margin-top: 20%;
-    top: 0%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-    float: left;
-  }
-  .fill2 {
-    position: relative;
-    margin-left: 25%;
-    margin-top: 20%;
-    top: 0%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-    float: left;
-  }
-  
-  .box {
-    position: relative;
-    margin-left: 30%;
-    margin-right: 20%;
-    margin-top: 40%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .box select {
-    background-color: #98CB3B;
-    color: white;
-    padding: 12px;
-    width: 100%;
-    border: none;
-    font-size: 20px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-    -webkit-appearance: button;
-    appearance: button;
-    outline: none;
-  }
-  
-  .box::before {
-    content: "\f13a";
-    font-family: 'Ubuntu', sans-serif;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    text-align: center;
-    font-size: 28px;
-    line-height: 45px;
-    color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.1);
-    pointer-events: none;
-  }
-  
-  .box:hover::before {
-    color: rgba(255, 255, 255, 0.6);
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  .box select option {
-    padding: 30px;
-  }
-
-  .figureLast{
-    margin-left: -30%;
-  }
-  
-  }
-
-/* ----------------------------------------- Small Tabs ------------------------------------------ */
-
-@media (max-width: 768px) and (min-width: 720px){
-
-  
-.max-width{
-  max-width: 1024px;
-  padding: 0 40px;
-  margin: auto;
 }
-
-.fre{
-font-family: 'Poppins', sans-serif;
-}
-
-.fre{
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-justify-content: space-between;
-} /* change orientations here */
-
-section .title{
-position: relative;
-text-align: center;
-color: #000000;
-font-size: 40px;
-font-weight: 500;
-margin-top: 10%;
-font-family: 'Ubuntu', sans-serif;
-}
-
-.fre{
-display: flex;
-color: #000000; /* Color of Name, and moving text in first page*/
-background-size: cover;
-background-attachment: fixed;
-font-family: 'Ubuntu', sans-serif;
-}
-.fre .t{
+.blok .t{
   position: relative;
   text-align: center;
   color: #000000;
   font-size: 40px;
   font-weight: 500;
-  margin-top: 10%;
+  margin-top: 0%;
   font-family: 'Ubuntu', sans-serif;
-}
-
-.box1 {
-  position: relative;
-  margin-top: 100%;
-  margin-left: 55%;
-  margin-bottom: -40%;
-  transform: translate(-50%, -50%);
-  width: 130%;
-}
-
-.box1 select {
-  background-color: #98CB3B;
-  color: white;
-  padding: 12px;
   width: 100%;
-  border-style: solid;
-  border-width: 100px;
-  border-block-color: #176696;
-  border-block-start-color: #176696;
-  border-top-color: #176696;
-  border-color: #176696;
-  font-size: 20px;
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
 }
-
-.box1::before {
-  content: "\f13a";
-  font-family: 'Ubuntu', sans-serif;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20%;
-  height: 100%;
+.blok .t1{
+  position: relative;
   text-align: center;
-  font-size: 28px;
-  line-height: 45px;
-  color: #176696;
-  background-color: #176696;
-  pointer-events: none;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 250;
+  margin-top: 5%;
+  font-family: 'Ubuntu', sans-serif;
+  width: 100%;
+}
+.blok .blok-content{
+  margin-bottom: -10%;
+}
+.blok .blok-content .left{
+  width: 40%;
+  margin-top: 10%;
+}
+.blok .blok-content .left .input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blok .blok-content .left .img{
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.blok .blok-content .one{
+  width: 20%;
+  margin-top: 10%;
+}
+.blok .blok-content .two{
+  width: 20%;
+  margin-top: 10%;
+}
+.blok .blok-content .three{
+  width: 20%;
+  margin-top: 10%;
+}
+.blok .blok-content .one1{
+  width: 20%;
+  margin-left: -10%;
+  margin-top: -5%;
+}
+.blok .blok-content .two1{
+  width: 20%;
+  margin-left: -10%;
+  margin-top: -5%;
+}
+.blok .blok-content .three1{
+  width: 20%;
+  margin-left: -10%;
+  margin-top: -5%;
+}
+.blok .blok-content .middle{
+  width: 20%;
+  margin-top: 0%;
+}
+.blok .blok-content .middle1{
+  width: 20%;
+  margin-top: -5%;
+}
+.blok .blok-content .right{
+  width: 40%;
+  margin-top: -10%;
+}
+.blok .blok-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+.blok .blok-content .right .input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blok .blok-content .right1{
+  width: 40%;
+  margin-top: 2%;
 }
 
-.box1:hover::before {
-  color: #176696;
-  background-color: #176696;
 }
 
-.box1 select option {
-  padding: 30px;
+/* ----------------------------------------- Tabs ------------------------------------------ */
+
+@media (max-width: 1205px) and (min-width: 720px){
+
+  .max-width{
+    max-width: 1080px;
+    padding: 0 80px;
+    margin: auto;
 }
 
-.fill {
+.imp, .sys, .blk, .blk1, .fourier, .haar, .footer{
+  font-family: 'Poppins', sans-serif;
+}
+
+.imp .imp-content,
+.sys .sys-content,
+.mva .mva-content,
+.blk .blk-content,
+.blk1 .blk1-content,
+.blok .blok-content,
+.fourier .fourier-content,
+.haar .haar-content{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+} /* change orientations here */
+
+section .title{
   position: relative;
-  margin-left: 20%;
-  margin-top: 20%;
-  top: 0%;
-  left: 0%;
-  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #000000;
+  font-size: 40px;
+  font-weight: 500;
+  margin-top: 5%;
+  font-family: 'Ubuntu', sans-serif;
 }
-.fill1 {
-  position: relative;
+
+.imp{
+  display: flex;
+  color: #000000; /* Color of Name, and moving text in first page*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.imp .imp-content{
+  margin-top: 10%;
+}
+.imp .imp-content .left{
+  width: 40%;
+  margin-top: 10%;
+}
+.imp .imp-content .left .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.imp .imp-content .left1{
+  width: 20%;
+  margin-top: 0%;
+  margin-left: -10%;
+}
+.imp .imp-content .left1 .input[type=text] {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.imp .imp-content .left2{
+  width: 20%;
+  margin-top: 0%;
+  margin-left: -10%;
+}
+.imp .imp-content .left2 .input[type=text] {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.imp .imp-content .middle{
+  width: 20%;
+  margin-left: -10%;
+}
+.imp .imp-content .middle .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+.imp .imp-content .right{
+  width: 20%;
+  margin-left: 10%;
+}
+.imp .imp-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+
+.imp .imp-content1 .left{
+  width: 80%;
+  margin-top: -20%;
   margin-left: 25%;
-  margin-top: 20%;
-  top: 0%;
-  left: 0%;
-  transform: translate(-50%, -50%);
-  float: left;
 }
-.fill2 {
-  position: relative;
-  margin-left: 25%;
-  margin-top: 20%;
-  top: 0%;
-  left: 0%;
-  transform: translate(-50%, -50%);
-  float: left;
+.imp .imp-content1 .left .input[type=text] {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
 
+.sys{
+  display: flex;
+  color: #000000; /* Color of Name, and moving text in first page*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.sys .sys-content .left{
+  width: 30%;
+  margin-top: 10%;
+}
+.sys .sys-content .left .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.sys .sys-content .left1{
+  width: 30%;
+  margin-left: -10%;
+}
+.sys .sys-content .left1 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.sys .sys-content .left2{
+  width: 30%;
+  margin-top: -28%;
+}
+.sys .sys-content .left2 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.sys .sys-content .right{
+  width: 40%;
+}
+.sys .sys-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+
+.mva{
+  display: flex;
+  color: #000000; /* Color of Name, and moving text in first page*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.mva .mva-content .left{
+  width: 30%;
+  margin-top: 10%;
+}
+.mva .mva-content .left .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.mva .mva-content .left1{
+  width: 30%;
+  margin-left: -10%;
+}
+.mva .mva-content .left1 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.mva .mva-content .left2{
+  width: 30%;
+  margin-top: -18%;
+}
+.mva .mva-content .left2 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.mva .mva-content .right{
+  width: 40%;
+}
+.mva .mva-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+
+.blk{
+  display: flex;
+  color: #000000; /* Color of Name, and moving text in first page*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.blk .blk-content .left{
+  width: 30%;
+  margin-top: 10%;
+}
+.blk .blk-content .left .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blk .blk-content .left1{
+  width: 30%;
+  margin-left: -10%;
+}
+.blk .blk-content .left1 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blk .blk-content .left2{
+  width: 30%;
+  margin-top: -10%;
+}
+.blk .blk-content .left2 .input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blk .blk-content .right{
+  width: 40%;
+}
+.blk .blk-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+
+.blk1{
+  display: flex;
+  color: #000000; /* Color of Name, and moving text in first page*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.blk1 .t{
+  position: relative;
+  text-align: center;
+  color: #000000;
+  font-size: 40px;
+  font-weight: 500;
+  margin-top: 0%;
+  font-family: 'Ubuntu', sans-serif;
+  width: 100%;
+}
+.blk1 .blk1-content{
+  margin-bottom: -10%;
+}
+.blk1 .blk1-content .left{
+  width: 40%;
+  margin-top: 10%;
+}
+.blk1 .blk1-content .left .input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blk1 .blk1-content .left .img{
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.blk1 .blk1-content .middle{
+  width: 20%;
+  margin-top: 10%;
+}
+.blk1 .blk1-content .middle1{
+  width: 20%;
+  margin-top: 10%;
+}
+.blk1 .blk1-content .right{
+  width: 40%;
+  margin-top: -10%;
+}
+.blk1 .blk1-content .right1{
+  width: 40%;
+  margin-top: -10%;
+}
+.blk1 .blk1-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+.blk1 .blk1-content .right1 .img{
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  border-radius: 6px;
+  }
+.blk1 .blk1-content .right .input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blk1 .blk1-content .right2{
+  width: 40%;
+  margin-top: -10%;
+}
+.blk1 .blk1-content .right2 .input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.blok{
+  display: flex;
+  color: #000000; /* Color of Name, and moving text in first page*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Ubuntu', sans-serif;
+}
+.blok .t{
+  position: relative;
+  text-align: center;
+  color: #000000;
+  font-size: 40px;
+  font-weight: 500;
+  margin-top: 0%;
+  font-family: 'Ubuntu', sans-serif;
+  width: 100%;
+}
+.blok .t1{
+  position: relative;
+  text-align: center;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 250;
+  margin-top: 5%;
+  font-family: 'Ubuntu', sans-serif;
+  width: 100%;
+}
+.blok .blok-content{
+  margin-bottom: -10%;
+}
+.blok .blok-content .left{
+  width: 40%;
+  margin-top: 10%;
+}
+.blok .blok-content .left .input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blok .blok-content .left .img{
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.blok .blok-content .one{
+  width: 20%;
+  margin-top: 10%;
+}
+.blok .blok-content .two{
+  width: 20%;
+  margin-top: 10%;
+}
+.blok .blok-content .three{
+  width: 20%;
+  margin-top: 10%;
+}
+.blok .blok-content .one1{
+  width: 20%;
+  margin-left: -10%;
+  margin-top: -5%;
+}
+.blok .blok-content .two1{
+  width: 20%;
+  margin-left: -10%;
+  margin-top: -5%;
+}
+.blok .blok-content .three1{
+  width: 20%;
+  margin-left: -10%;
+  margin-top: -5%;
+}
+.blok .blok-content .middle{
+  width: 20%;
+  margin-top: 0%;
+}
+.blok .blok-content .middle1{
+  width: 20%;
+  margin-top: -5%;
+}
+.blok .blok-content .right{
+  width: 40%;
+  margin-top: -10%;
+}
+.blok .blok-content .right .img{
+height: 400px;
+width: 400px;
+object-fit: cover;
+border-radius: 6px;
+}
+.blok .blok-content .right .input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.blok .blok-content .right1{
+  width: 40%;
+  margin-top: 2%;
+}
+}
+
+  /* ----------------------------------------- Smaller Phones ------------------------------------------ */
+
+@media (max-width: 720px){
+
+  }
+
+/* ------------------------------------------ Drop Down ------------------------------------------------------- */
 .box {
   position: relative;
   margin-left: 30%;
   margin-right: 20%;
-  margin-top: 40%;
+  margin-top: -10%;
   transform: translate(-50%, -50%);
 }
 
@@ -555,393 +946,57 @@ font-family: 'Ubuntu', sans-serif;
 .box select option {
   padding: 30px;
 }
+/* --------------------------------------------- Drop Down END ---------------------------------------------------------*/
 
-.figureLast{
-  margin-left: 0%;
-}
-
-}
-
-/* ----------------------------------------------- Large Phones ---------------------------------- */
-
-@media (max-width: 720px) and (min-width: 420px){
-
-  
-  .max-width{
-    max-width: 715px;
-    padding: 0 40px;
-    margin: auto;
-  }
-  
-  .fre{
-  font-family: 'Poppins', sans-serif;
-  }
-  
-  .fre{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  } /* change orientations here */
-  
-  section .title{
+.fill {
   position: relative;
-  text-align: center;
-  color: #000000;
-  font-size: 40px;
-  font-weight: 500;
+  margin-left: 20%;
+  margin-top: 20%;
+  top: 0%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+}
+.fill1 {
+  position: relative;
+  margin-left: 65%;
+  margin-top: -10%;
+  width: 120%;
+  top: 0%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  float: left;
+}
+.fill2 {
+  position: relative;
+  margin-left: 65%;
   margin-top: 10%;
-  width: 80%;
-  font-family: 'Ubuntu', sans-serif;
-  }
-  
-  .fre{
-  display: flex;
-  color: #000000; /* Color of Name, and moving text in first page*/
-  background-size: cover;
-  background-attachment: fixed;
-  font-family: 'Ubuntu', sans-serif;
-  }
-  .fre .t{
-    position: relative;
-    text-align: center;
-    color: #000000;
-    font-size: 40px;
-    font-weight: 500;
-    margin-top: 10%;
-    width: 100%;
-    font-family: 'Ubuntu', sans-serif;
-  }
-
-  .box1 {
-    position: relative;
-    margin-top: 100%;
-    margin-left: 55%;
-    margin-bottom: -40%;
-    transform: translate(-50%, -50%);
-    width: 130%;
-  }
-  
-  .box1 select {
-    background-color: #98CB3B;
-    color: white;
-    padding: 12px;
-    width: 100%;
-    border-style: solid;
-    border-width: 100px;
-    border-block-color: #176696;
-    border-block-start-color: #176696;
-    border-top-color: #176696;
-    border-color: #176696;
-    font-size: 20px;
-    -webkit-appearance: button;
-    appearance: button;
-    outline: none;
-  }
-  
-  .box1::before {
-    content: "\f13a";
-    font-family: 'Ubuntu', sans-serif;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    text-align: center;
-    font-size: 28px;
-    line-height: 45px;
-    color: #176696;
-    background-color: #176696;
-    pointer-events: none;
-  }
-  
-  .box1:hover::before {
-    color: #176696;
-    background-color: #176696;
-  }
-  
-  .box1 select option {
-    padding: 30px;
-  }
-
-  .fill {
-    position: relative;
-    margin-left: 20%;
-    margin-top: 20%;
-    top: 0%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-  }
-  .fill1 {
-    position: relative;
-    margin-left: 35%;
-    margin-top: 20%;
-    top: 0%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-    float: left;
-  }
-  .fill2 {
-    position: relative;
-    margin-left: 35%;
-    margin-top: 20%;
-    top: 0%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-    float: left;
-  }
-
-  .box {
-    position: relative;
-    margin-right: 20%;
-    margin-left: 25%;
-    margin-top: 40%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .box select {
-    background-color: #98CB3B;
-    color: white;
-    padding: 12px;
-    width: 100%;
-    border: none;
-    font-size: 20px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-    -webkit-appearance: button;
-    appearance: button;
-    outline: none;
-  }
-  
-  .box::before {
-    content: "\f13a";
-    font-family: 'Ubuntu', sans-serif;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    text-align: center;
-    font-size: 28px;
-    line-height: 45px;
-    color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.1);
-    pointer-events: none;
-  }
-  
-  .box:hover::before {
-    color: rgba(255, 255, 255, 0.6);
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  .box select option {
-    padding: 30px;
-  }
-
-  .figureLast{
-    margin-left: 0%;
-  }
-
+  width: 120%;
+  top: 0%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  float: left;
 }
-
-/* ------------------------------------- Small Phones ------------------------------------ */
-
-@media (max-width: 420px){
-
-  
-  .max-width{
-    max-width: 460px;
-    padding: 0 40px;
-    margin: auto;
-  }
-  
-  .fre{
-  font-family: 'Poppins', sans-serif;
-  }
-  
-  .fre{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  } /* change orientations here */
-  
-  section .title{
+.fill3 {
   position: relative;
-  text-align: center;
-  color: #000000;
-  font-size: 40px;
-  font-weight: 500;
+  margin-left: 65%;
+  margin-top: 80%;
+  width: 120%;
+  top: 0%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  float: left;
+}
+.fill5 {
+  position: relative;
+  margin-left: 65%;
   margin-top: 10%;
-  width: 80%;
-  font-family: 'Ubuntu', sans-serif;
-  }
-  
-  .fre{
-  display: flex;
-  color: #000000; /* Color of Name, and moving text in first page*/
-  background-size: cover;
-  background-attachment: fixed;
-  font-family: 'Ubuntu', sans-serif;
-  }
-  .fre .t{
-    position: relative;
-    text-align: center;
-    color: #000000;
-    font-size: 30px;
-    font-weight: 500;
-    margin-top: 10%;
-    margin-left: -5%;
-    width: 80%;
-    font-family: 'Ubuntu', sans-serif;
-  }
-
-  .box1 {
-    position: relative;
-    margin-top: 120%;
-    margin-left: 52%;
-    margin-bottom: -40%;
-    transform: translate(-50%, -50%);
-    width: 130%;
-  }
-  
-  .box1 select {
-    background-color: #98CB3B;
-    color: white;
-    padding: 12px;
-    width: 100%;
-    border-style: solid;
-    border-width: 100px;
-    border-block-color: #176696;
-    border-block-start-color: #176696;
-    border-top-color: #176696;
-    border-color: #176696;
-    font-size: 20px;
-    -webkit-appearance: button;
-    appearance: button;
-    outline: none;
-  }
-  
-  .box1::before {
-    content: "\f13a";
-    font-family: 'Ubuntu', sans-serif;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    text-align: center;
-    font-size: 28px;
-    line-height: 45px;
-    color: #176696;
-    background-color: #176696;
-    pointer-events: none;
-  }
-  
-  .box1:hover::before {
-    color: #176696;
-    background-color: #176696;
-  }
-  
-  .box1 select option {
-    padding: 30px;
-  }
-
-  .fill {
-    position: relative;
-    margin-left: 20%;
-    margin-top: 20%;
-    top: 0%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-  }
-  .fill1 {
-    position: relative;
-    margin-left: 30%;
-    margin-top: 20%;
-    top: 0%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-    float: left;
-  }
-  .fill2 {
-    position: relative;
-    margin-left: 30%;
-    margin-top: 20%;
-    top: 0%;
-    left: 0%;
-    transform: translate(-50%, -50%);
-    float: left;
-  }
-
-  .box {
-    position: relative;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 40%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .box select {
-    background-color: #98CB3B;
-    color: white;
-    padding: 12px;
-    width: 100%;
-    border: none;
-    font-size: 20px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-    -webkit-appearance: button;
-    appearance: button;
-    outline: none;
-  }
-  
-  .box::before {
-    content: "\f13a";
-    font-family: 'Ubuntu', sans-serif;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    text-align: center;
-    font-size: 28px;
-    line-height: 45px;
-    color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.1);
-    pointer-events: none;
-  }
-  
-  .box:hover::before {
-    color: rgba(255, 255, 255, 0.6);
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  .box select option {
-    padding: 30px;
-  }
-
-  .figureLast{
-    margin-left: 0%;
-  }
-  
-  }
-
-.select1{
-  position: relative;
-  width: 10%;
-  z-index: 999;
-  padding: 10px 0;
-  font-family: 'Ubuntu', sans-serif;
-  transition: all 0.3s ease;
+  width: 120%;
+  top: 0%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  float: left;
 }
 
-section{
-  padding: 10px 0;
-}
-.max-width{
-  max-width: 1300px;
-  padding: 0 10px;
-  margin: auto;
-}
 
 /* ----------------------------------------- Plot Button -----------------------------------------------------*/
 
@@ -950,7 +1005,6 @@ section{
   width: 100px;
   height: 30px;
   font-size: 16px;
-  background: transparent;
   border: none;
   position: relative;
   color: #f0f0f0;
@@ -964,8 +1018,8 @@ section{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin-left: 0%;
-  margin-top: 20%;
+  margin-left: 20%;
+  margin-top: 60%;
 }
 
 .button2{
@@ -987,8 +1041,8 @@ section{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin-left: 0%;
-  margin-top: 10%;
+  margin-left: 20%;
+  margin-top: 30%;
 }
 
 .button1::after,.button1::before,.button2::after,.button2::before {
@@ -996,7 +1050,7 @@ section{
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: -99999;
+  z-index: -999;
   transition: all .4s;
 }
 
@@ -1013,8 +1067,8 @@ section{
   width: 35px;
   height: 35px;
   background: #ffffff15;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
   border-radius: 50px;
 }
 
@@ -1036,16 +1090,108 @@ section{
   transform: translate(0, 5%);
 }
 
+.button2::after,.button1::before,.button2::after,.button2::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -999;
+  transition: all .4s;
+}
+
+.button2::before,.button2::before {
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: #2C9AD1;
+  border-radius: 10px;
+}
+
+.button2::after,.button2::after {
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #ffffff15;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 50px;
+}
+
+.button2:hover::before,.button2:hover::before {
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+}
+
+.button2:hover::after,.button2:hover::after {
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+.button2:active::after,.button2:active::after {
+  transition: 0s;
+  transform: translate(0, 5%);
+}
+
+/* ------------------------------- LTI Box ------------------------------------------- */
+
+.box1 {
+  position: relative;
+  margin-left: 30%;
+  margin-right: 20%;
+  transform: translate(-50%, -50%);
+}
+
+.box1 select {
+  background-color: #98CB3B;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.box1::before {
+  content: "\f13a";
+  font-family: 'Ubuntu', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box1:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box1 select option {
+  padding: 30px;
+}
+
 /* ------------------------------- LTI Box 2 ------------------------------------------- */
 
 .box2 {
   position: relative;
   /*margin-left: 20%;*/
-  margin-top: 45%;
+  margin-top: 40%;
   margin-bottom: 0%;
   margin-left: 40%;
   transform: translate(-50%, -50%);
-  width: 80%;
+  width: 100%;
 }
 
 .box2 select {
@@ -1099,7 +1245,7 @@ section{
   margin-bottom: 60%;
   margin-left: 40%;
   transform: translate(-50%, -50%);
-  width: 80%;
+  width: 100%;
 }
 
 .box3 select {
@@ -1279,10 +1425,12 @@ section{
 /* Style the buttons inside the tab */
 .tab button {
   background-color: inherit;
+  float: left;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
+  transition: 0.3s;
   font-size: 17px;
 }
 
@@ -1429,35 +1577,208 @@ section{
   transform: translate(0, 5%);
 }
 
-/* ------------------------------------------ Table ------------------------------------ */
+/* ------------------------------------- Dynamic Text box --------------------------------------- */
 
-table,td,tr {
-        padding: 10%;
-        border: 3px solid black;
-        border-collapse: collapse;
+#wrapper
+{
+  width:200%;
+  margin-left: -90%;
+  margin-top: 10%;
+  font-family:helvetica;
+  text-align:center;
+}
+input[type="text"]
+{
+  width:40%;
+  height:30px;
+  margin-right:0.5%;
+  border-radius:3px;
+  border:1px solid green;
+}
+input[type="number"]
+{
+  width:40%;
+  height:30px;
+  margin-right:0.5%;
+  border-radius:3px;
+  border:1px solid green;
+}
+input[type="button"]
+{
+  background:none;
+  color:white;
+  border:none;
+  width:50%;
+  height:5%;
+  border-radius:3px;
+  background-color:green;
+  font-size:16px;
 }
 
-th{
-  border: 3px solid black;
-  background-color: #AAA;
+#wrapper1
+{
+  width:200%;
+  margin-left: -90%;
+  margin-top: 10%;
+  font-family:helvetica;
+  text-align:center;
+}
+input[type="text"]
+{
+  width:40%;
+  height:30px;
+  margin-right:0.5%;
+  border-radius:3px;
+  border:1px solid green;
+}
+input[type="number"]
+{
+  width:40%;
+  height:30px;
+  margin-right:0.5%;
+  border-radius:3px;
+  border:1px solid green;
+}
+input[type="button"]
+{
+  background:none;
+  color:white;
+  border:none;
+  width:50%;
+  height:5%;
+  border-radius:3px;
+  background-color:green;
+  font-size:16px;
+}
+input[type="checkbox"]
+{
+  height: 10%;
+  width: 10%;
+  background-color: #eee;
 }
 
-/* ------------------------------------------- Image ----------------------------------- */
+/* ----------------------------------- Button 8 -------------------------------------------- */
 
-.expandable-figure {
-  max-width: 100%;
+.button8{
+  all: unset;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  border: none;
+  position: relative;
+  color: #f0f0f0;
   cursor: pointer;
-  margin-left: -5%;
+  z-index: 1;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-left: 20%;
+  margin-top: 120%;
+}
+
+.button8::after,.button8::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -999;
+  transition: all .4s;
+}
+
+.button8::before{
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: #2C9AD1;
+  border-radius: 10px;
+}
+
+.button8::after{
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #ffffff15;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 50px;
+}
+
+.button8:hover::before{
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+}
+
+.button8:hover::after{
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+.button9{
+  all: unset;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  border: none;
+  position: relative;
+  color: #f0f0f0;
+  cursor: pointer;
+  z-index: 1;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-left: 20%;
   margin-top: 10%;
 }
 
-.expanded {
-  max-width: none;
+.button9::after,.button9::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -999;
+  transition: all .4s;
 }
 
-.form1{
-  position: relative;
-  margin-left: -20%;
-  margin-top: 30%;
-  margin-bottom: 20%;
+.button9::before{
+  transform: translate(0%, 0%);
+  width: 100%;
+  height: 100%;
+  background: #2C9AD1;
+  border-radius: 10px;
+}
+
+.button9::after{
+  transform: translate(10px, 10px);
+  width: 35px;
+  height: 35px;
+  background: #ffffff15;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 50px;
+}
+
+.button9:hover::before{
+  transform: translate(5%, 20%);
+  width: 110%;
+  height: 110%;
+}
+
+.button9:hover::after{
+  border-radius: 10px;
+  transform: translate(0, 0);
+  width: 100%;
+  height: 100%;
 }

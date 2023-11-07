@@ -1,9 +1,16 @@
 ## The aim of this experiment is to 
 ***
-1. understand LTI system representation in frequency domain 
+1. Study Laplace transform transform 
 
-2. understand magnitude response and phase response of LTI systems 
+2. Application of Laplace transform for system analysis – Causality and stability  
 
-3. study some common LTI systems in frequency domain 
+3. Frequency analysis and geometric interpretation  
 
-4. build some LTI systems in frequency domain 
+4. Understanding Linear constant coefficient differential equations (LCCDE)  
+
+ 
+
+
+
+ 
+
