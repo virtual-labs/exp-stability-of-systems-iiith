@@ -97,7 +97,7 @@
 			<div class="column is-7-desktop is-2-tablet is-10-mobile">
 				<div class="box-question">
 					<figure class="expandable-figure">
-						<img src="pid.jpg" alt="PID Controller">
+						<img src="./images/pid.jpg" alt="PID Controller">
 					</figure>
 				</div>
 			</div>
@@ -185,7 +185,7 @@
 			<div class="column is-7-desktop is-2-tablet is-10-mobile">
 				<div class="box-question">
 					<figure class="expandable-figure">
-						<img src="pid.jpg" alt="PID Controller">
+						<img src="./images/pid1.jpg" alt="PID Controller">
 					</figure>
 				</div>
 			</div>
@@ -207,9 +207,9 @@
 	</div>
 
 	<div id="MVG" class="tabcontent">
-		<section class="fre" id="average">
+		<section class="fre" id="quiz1">
 			<div class="max-width">
-				<h2 class="title">Is the System Stable? Give the ROC</h2>
+				<h2 class="title">Is the System Stable? Give the poles</h2>
 				<div class="columns is-centered">
 					<div class="v-collapsible-instruction-container v-instruction-container" style="margin-top: 2%;">
 						<div class="v-collapsible is-size-5">Instructions</div>
@@ -276,7 +276,7 @@
 						<!-- Add other form elements and a submit button here -->
 					</form>
 					</div>
-					<div class="fill2"> Fill the stable ROC &emsp; <input id="ROC" placeholder="Enter here"> </div>
+					<div class="fill2"> Fill the poles &emsp; <input id="poles" placeholder="Enter here"> </div>
 					<button class="button1" id="jsbutton3" role="button" onClick="ROCQuiz()">Check</button>
 				</div>
 			</div>
@@ -284,7 +284,7 @@
 			<div class="column is-7-desktop is-2-tablet is-10-mobile">
 				<div class="box-question">
 					<figure class="expandable-figure">
-						<img src="quiz.jpg" alt="PID Controller">
+						<img src="./images/quiz.jpg" alt="PID Controller">
 					</figure>
 					<div class="v-datalist-row">
 						<div id="result2"></div>
@@ -308,9 +308,9 @@
 	</div>
 
 	<div id="BLK1" class="tabcontent">
-		<section class="fre" id="black">
+		<section class="fre" id="quiz2">
 			<div class="max-width">
-				<h2 class="title">Is the System Stable? Give the ROC</h2>
+				<h2 class="title">Generate within given steps</h2>
 				<div class="columns is-centered">
 					<div class="v-collapsible-instruction-container v-instruction-container" style="margin-top: 2%;">
 						<div class="v-collapsible is-size-5">Instructions</div>
@@ -364,19 +364,20 @@
 			style="margin-top:-1.5%">
 			<div class="column is-2-desktop is-4-tablet is-10-mobile">
 				<div class="box-question">
-					<div class="fill2"> Fill the poles &emsp; <input id="poles" placeholder="Enter here"> </div>
-					<button class="button1" id="jsbutton4" role="button" onClick="polesQuiz()">Check</button>
+					<div class="fill1"> Current Temperature &emsp; 10 </div>
+					<div class="fill2"> Set Temperature &emsp; 30 </div>
+					<div class="fill2"> Proportional: (kp) &emsp; <input type=number id="kpq" value=0.01 step=0.5> </div>
+					<div class="fill2"> Integral: (ki) &emsp; <input type=number id="kiq" value=0.01 step=0.5> </div>
+					<div class="fill2"> Differential: (kd) &emsp; <input type=number id="kdq" value=0 step=0.5> </div>
+					<button class="button1" id="jsbutton4" role="button" onClick="PIDTemperatureQuiz()">Simulate & Check</button>
 				</div>
 			</div>
 
 			<div class="column is-7-desktop is-2-tablet is-10-mobile">
 				<div class="box-question">
 					<figure class="expandable-figure">
-						<img src="quiz.jpg" alt="PID Controller">
+						<img src="./images/pid.jpg" alt="PID Controller">
 					</figure>
-					<div class="v-datalist-row">
-						<div id="result4"></div>
-					</div>
 				</div>
 			</div>
 
@@ -385,8 +386,9 @@
 					<div class="v-datalist-title">Observations</div>
 					<div id="observations1">
 						<div class="v-datalist-row">
-							<div id="result5"></div>
+							<div id="result4"></div>
 						</div>
+						<div id='figure4'></div>
 					</div>
 				</div>
 			</div>
