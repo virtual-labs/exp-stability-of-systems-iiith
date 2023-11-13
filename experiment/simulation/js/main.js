@@ -198,8 +198,13 @@ var iter = 0;
 var temperatures = [];
 
 function PIDTemperature(){
+    
+    iter = 0;
+
     var plotDiv = document.getElementById("figure3");
     Plotly.purge(plotDiv);
+    
+    
     temperatures = [];
     var currentTemp = document.getElementById("temp").value;
     currentTemperature = parseFloat(currentTemp);
@@ -222,13 +227,21 @@ function PIDTemperature(){
     // Update the error and calculate the PID output
     var error = setpoint - currentTemperature;
     
-    if(Math.abs(error) < 1e-2)
+    if(iter>50)
+    {
+        var element = document.getElementById("result1")
+        element.style.color = "#FF0000";
+        element.style.fontWeight = "bold";
+        element.innerHTML = 'The system is unstable! Set point cannot be reached';
+    }
+
+    if((Math.abs(error) < 1e-2))
     {
         var xt = [];
 
         for(var i=0; i<=iter; i++)
         {
-            xt.push(i);
+            xt.push(i/2);
         }
 
         var yt = [];
@@ -306,11 +319,76 @@ function PIDTemperature(){
     
     if(flag==0)
     {
-    // Log the current temperature and PID output for demonstration
+        // Log the current temperature and PID output for demonstration
         var element = document.getElementById("result1")
-        element.style.color = "#FF0000";
+        element.style.color = "#0000FF";
         element.style.fontWeight = "bold";
         element.innerHTML = 'Calculating... Current Temperature - ' + (Math.round(currentTemperature*100)/100).toString() + '°C';
+
+        var xt = [];
+
+        for(var i=0; i<=iter; i++)
+        {
+            xt.push(i/2);
+        }
+
+        var yt = [];
+
+        var N = xt.length;
+        for(var i=0; i<N; i++)
+        {
+            yt.push(setpoint);
+        }
+        
+        var trace = {
+            x: xt,
+            y: temperatures,
+            type: 'scatter',
+            mode: 'line'
+        };
+        var trace2 = {
+            x: xt,
+            y: yt,
+            mode: 'line',
+            line: {
+                dash: 'dot', // Set the line style to "dot" (dotted line)
+                color: 'red', // Line color
+                width: 2       // Line width
+            }
+        };
+    
+        var data = [trace,trace2];
+    
+        //var config = {responsive: true}
+        var layout1 = {
+            title: 'Temperature Control',
+            showlegend: false,
+            xaxis: {
+                title: 'Time (s)'
+            },
+            yaxis: {
+                title: 'Temperature (°C)'
+            }
+        };
+          
+        Plotly.newPlot('figure3', data, layout1);
+                
+        if(screen.width < 400)
+        {
+            var update = {
+                width: 0.7*screen.width,
+                height: 400
+            };
+        }
+        else
+        {
+            var update = {
+                width: 350,
+                height: 400
+            };
+        }
+    
+        Plotly.relayout('figure3', update);
     }
   
     iter++;
@@ -346,9 +424,9 @@ function simulateSystemResponse() {
   // For this temperature example, you can introduce variations, delays, etc.
   // In this simplified example, we'll assume a gradual approach to the setpoint
   if (currentTemperature < setpoint) {
-    currentTemperature += Math.random() * 0.5;
+    currentTemperature += Math.random() * (setpoint/40);
   } else {
-    currentTemperature -= Math.random() * 0.5;
+    currentTemperature -= Math.random() * (setpoint/40);
   }
 }
 
@@ -421,8 +499,6 @@ function separate(input,select)
 
 var pole11 = 0;
 var pole21 = 0;
-var pole12 = 0;
-var pole22 = 0;
 
 function ROCQuizInit()
 {
@@ -485,10 +561,20 @@ function ROCQuiz()
 
     if(flag)
     {
-        var enteredROC = document.getElementById("ROC").value;
-        const trimmedString = enteredROC.trim();
-        const str = "none";
-        if(trimmedString.toLowerCase() != str.toLowerCase())
+        var polesString = document.getElementById("poles").value;
+        var temp = separate(polesString,2);
+
+        p1 = temp[0];
+        p2 = temp[1];
+
+        if(p1>p2)
+        {
+            var t = p1;
+            p1 = p2;
+            p2 = t;
+        }
+
+        if(Math.abs(p1-pole11)>1e-2 || Math.abs(p2-pole21)>1e-2)
         {
             flag2 = 0;
         }
@@ -505,21 +591,21 @@ function ROCQuiz()
             var element = document.getElementById("result3")
             element.style.color = "#FF0000";
             element.style.fontWeight = "bold";
-            element.innerHTML = 'Wrong Option Selected, but right ROC entered!!';
+            element.innerHTML = 'Wrong Option Selected, but right poles entered!!';
         }
         else if(flag1 & !flag2)
         {
             var element = document.getElementById("result3")
             element.style.color = "#FF0000";
             element.style.fontWeight = "bold";
-            element.innerHTML = 'Right Option Selected, but wrong ROC entered!!';
+            element.innerHTML = 'Right Option Selected, but wrong poles entered!!';
         }
         else if(!flag1 & !flag2)
         {
             var element = document.getElementById("result3")
             element.style.color = "#FF0000";
             element.style.fontWeight = "bold";
-            element.innerHTML = 'Wrong Option Selected, and wrong ROC entered!!';
+            element.innerHTML = 'Wrong Option Selected, and wrong poles entered!!';
         }
     }
     else
@@ -531,72 +617,218 @@ function ROCQuiz()
     }
 }
 
-// ---------------------------------------------------- Poles Quiz --------------------------------------------------------
+// ------------------------------------- Temp PID Quiz -----------------------------------------------
 
-function polesQuizInit()
-{
-    var k1 = 0;
-    while(k1==0)
-    {
-        k1 = (Math.random()-0.5)*2;
-    }
-    var k2 = 0;
-    while(k2==0)
-    {
-        k2 = (Math.random()-0.5)*2;
-    }
-    var k3 = 0;
-    while(k3==0)
-    {
-        k3 = (Math.random()-0.5)*2;
-    }
+function PIDTemperatureQuiz(){
+    
+    iter = 0;
 
-    var element = document.getElementById("result4")
-    element.style.color = "#0000FF";
-    element.style.fontWeight = "bold";
-    element.innerHTML = 'k1 = ' + (Math.round(k1*100)/100).toString() + ', k2 = ' + (Math.round(k2*100)/100).toString() + ', k3 = ' + (Math.round(k3*100)/100).toString();
+    var plotDiv = document.getElementById("figure4");
+    Plotly.purge(plotDiv);
+    
+    
+    temperatures = [];
+    currentTemperature = 10;
 
-    if((k3-1)/k2 < 0)
-    {
-        pole12 = Math.round((((Math.round(k3*100)/100)-1)/(Math.round(k2*100)/100))*100)/100;
-        pole22 = 0;
-    }
-    else
-    {
-        pole22 = Math.round((((Math.round(k3*100)/100)-1)/(Math.round(k2*100)/100))*100)/100;
-        pole12 = 0;
-    }
-}
+    var kp1 = document.getElementById("kpq").value;
+    kp = parseFloat(kp1);
+    var ki1 = document.getElementById("kiq").value;
+    ki = parseFloat(ki1);
+    var kd1 = document.getElementById("kdq").value;
+    kd = parseFloat(kd1);
 
-function polesQuiz()
-{
-    var polesString = document.getElementById("poles").value;
-    var temp = separate(polesString,2);
+    setpoint = 30;
 
-    p1 = temp[0];
-    p2 = temp[1];
+    temperatures.push(currentTemperature);
+    var flag = 0;
 
-    if(p1>p2)
+    // Main control loop
+    const intervalId = setInterval(() => {
+    // Update the error and calculate the PID output
+    var error = setpoint - currentTemperature;
+    
+    if(iter>60)
     {
-        var t = p1;
-        p1 = p2;
-        p2 = t;
-    }
-
-    if(Math.abs(p1-pole12)<1e-3 && Math.abs(p2-pole22)<1e-3)
-    {
-        var element = document.getElementById("result5")
-        element.style.color = "#006400";
-        element.style.fontWeight = "bold";
-        element.innerHTML = 'Right Answer!!';
-    }
-    else
-    {
-        var element = document.getElementById("result5")
+        var element = document.getElementById("result4")
         element.style.color = "#FF0000";
         element.style.fontWeight = "bold";
-        element.innerHTML = 'Wrong Answer!!';
+        element.innerHTML = 'The system is did not reach setpoint in 100sec!!';
+        flag = 1;
+        clearInterval(intervalId);
     }
+
+    if((Math.abs(error) < 1e-2))
+    {
+        var xt = [];
+
+        for(var i=0; i<=iter; i++)
+        {
+            xt.push(i/2);
+        }
+
+        var yt = [];
+
+        var N = xt.length;
+        for(var i=0; i<N; i++)
+        {
+            yt.push(setpoint);
+        }
+        
+        var trace = {
+            x: xt,
+            y: temperatures,
+            type: 'scatter',
+            mode: 'line'
+        };
+        var trace2 = {
+            x: xt,
+            y: yt,
+            mode: 'line',
+            line: {
+                dash: 'dot', // Set the line style to "dot" (dotted line)
+                color: 'red', // Line color
+                width: 2       // Line width
+            }
+        };
+    
+        var data = [trace,trace2];
+    
+        //var config = {responsive: true}
+        var layout1 = {
+            title: 'Temperature Control',
+            showlegend: false,
+            xaxis: {
+                title: 'Time (s)'
+            },
+            yaxis: {
+                title: 'Temperature (°C)'
+            }
+        };
+          
+        Plotly.newPlot('figure4', data, layout1);
+                
+        if(screen.width < 400)
+        {
+            var update = {
+                width: 0.7*screen.width,
+                height: 400
+            };
+        }
+        else
+        {
+            var update = {
+                width: 350,
+                height: 400
+            };
+        }
+    
+        Plotly.relayout('figure4', update);
+        flag = 1;
+        var element = document.getElementById("result4")
+        element.style.color = "#006400";
+        element.style.fontWeight = "bold";
+        element.innerHTML = 'Setpoint Temperature reached within 100sec!!';
+        clearInterval(intervalId);
+    }
+
+    var output = calculatePIDOutput(error, kp, ki, kd);
+  
+    // Apply the output to control the system (e.g., adjust heating/cooling power)
+    adjustSystem(output);
+  
+    // Simulate the system's response by updating the current temperature
+    simulateSystemResponseQ();
+    
+    if(flag==0)
+    {
+        // Log the current temperature and PID output for demonstration
+        var element = document.getElementById("result4")
+        element.style.color = "#0000FF";
+        element.style.fontWeight = "bold";
+        element.innerHTML = 'Calculating... Current Temperature - ' + (Math.round(currentTemperature*100)/100).toString() + '°C';
+
+        var xt = [];
+
+        for(var i=0; i<=iter; i++)
+        {
+            xt.push(i/2);
+        }
+
+        var yt = [];
+
+        var N = xt.length;
+        for(var i=0; i<N; i++)
+        {
+            yt.push(setpoint);
+        }
+        
+        var trace = {
+            x: xt,
+            y: temperatures,
+            type: 'scatter',
+            mode: 'line'
+        };
+        var trace2 = {
+            x: xt,
+            y: yt,
+            mode: 'line',
+            line: {
+                dash: 'dot', // Set the line style to "dot" (dotted line)
+                color: 'red', // Line color
+                width: 2       // Line width
+            }
+        };
+    
+        var data = [trace,trace2];
+    
+        //var config = {responsive: true}
+        var layout1 = {
+            title: 'Temperature Control',
+            showlegend: false,
+            xaxis: {
+                title: 'Time (s)'
+            },
+            yaxis: {
+                title: 'Temperature (°C)'
+            }
+        };
+          
+        Plotly.newPlot('figure4', data, layout1);
+                
+        if(screen.width < 400)
+        {
+            var update = {
+                width: 0.7*screen.width,
+                height: 400
+            };
+        }
+        else
+        {
+            var update = {
+                width: 350,
+                height: 400
+            };
+        }
+    
+        Plotly.relayout('figure4', update);
+    }
+  
+    iter++;
+    temperatures.push(currentTemperature);
+  
+    }, interval);
+}
+
+// Function to simulate the system's response over time
+function simulateSystemResponseQ() {
+  // Replace this with your code to simulate the system's response over time
+  // For this temperature example, you can introduce variations, delays, etc.
+  // In this simplified example, we'll assume a gradual approach to the setpoint
+  if (currentTemperature < setpoint) {
+    currentTemperature += Math.random() * 0;
+  } else {
+    currentTemperature -= Math.random() * 0;
+  }
 }
 
 /* ---------------------------- LinSpace -------------------------------------- */
@@ -615,7 +847,6 @@ function makeArr(startValue, stopValue, cardinality) {
 function startup()
 {
     sPlane();
-    polesQuizInit();
     ROCQuizInit();
     document.getElementById("default").click();
 }
