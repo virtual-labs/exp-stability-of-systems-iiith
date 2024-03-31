@@ -10,6 +10,15 @@ function openPart(evt, name) {
     }
     document.getElementById(name).style.display = "block";
     evt.currentTarget.className += " active";
+
+    if(!name.localeCompare('FR'))
+    {
+        sPlane();
+    }
+    else if(!name.localeCompare('MVG'))
+    {
+        ROCQuizInit();
+    }
 }
 
 var k;
@@ -846,8 +855,6 @@ function makeArr(startValue, stopValue, cardinality) {
 
 function startup()
 {
-    sPlane();
-    ROCQuizInit();
     document.getElementById("default").click();
 }
 
