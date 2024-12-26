@@ -22,6 +22,9 @@
             <div class="tab">
                 <button class="tablinks" onclick="openPart(event, 'FR')", id="default">PID Controller</button>
                 <button class="tablinks" onclick="openPart(event, 'SYS')">PID Temperature</button>
+				<button class="tablinks" onclick="openPart(event, 'SynthSys')">Custom System</button>
+				<button class="tablinks" onclick="openPart(event, 'SecondOrderSys')">Second Order System</button>
+
 				<button class="tablinks" onclick="openPart(event, 'MVG')">Quiz 1</button>
                 <button class="tablinks" onclick="openPart(event, 'BLK1')">Quiz 2</button>
             </div>
@@ -145,6 +148,98 @@
 
 		</section>
 	</div>
+
+<div id="SynthSys" class="tabcontent">
+    <section class="fre" id="mysys">
+        <div class="max-width">
+            <h2 class="title">Custom System Builder</h2>
+            <div class="columns is-centered">
+                <div class="v-collapsible-instruction-container v-instruction-container" style="margin-top: 2%;">
+                    <div class="v-collapsible is-size-5">Instructions</div>
+                    <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+                        <h3><b>Build a system: C1·a^n·u(n) + C2·b^n·u(n).</b></h3>
+                        <ol>
+                            <li>Enter values for C1, C2, a, b.</li>
+                            <li>Click "Simulate System" to see stability results.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%">
+                <div class="column is-2-desktop is-4-tablet is-10-mobile">
+                    <div class="box-question">
+                        <div class="fill1">
+                            C1 <input type="number" id="c1" value="1" step="0.1">
+                        </div>
+                        <div class="fill1">
+                            C2 <input type="number" id="c2" value="1" step="0.1">
+                        </div>
+                        <div class="fill1">
+                            a <input type="number" id="aVal" value="1.1" step="0.1">
+                        </div>
+                        <div class="fill1">
+                            b <input type="number" id="bVal" value="0.9" step="0.1">
+                        </div>
+                        <button class="buttonTotal" onClick="simulateCustomSystem()">Simulate System</button>
+                    </div>
+                </div>
+                <div class="column is-7-desktop is-10-tablet is-10-mobile">
+                    <!-- Placeholder for any diagrams or descriptions -->
+                    <div id="customSystemPlot"></div>
+                </div>
+                <div class="column is-3-desktop is-10-tablet is-5-mobile">
+                    <div class="box-question">
+                        <div class="v-datalist-title">Observations</div>
+                        <div id="customSystemResult"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="SecondOrderSys" class="tabcontent">
+	<section class="fre" id="secondOrderSim">
+	  <div class="max-width">
+		<h2 class="title">Second-Order System Simulator</h2>
+		<div class="columns is-centered">
+		  <div class="v-collapsible-instruction-container v-instruction-container" style="margin-top: 2%;">
+			<div class="v-collapsible is-size-5">Instructions</div>
+			<div class="v-content" style="text-align:left; padding-left:10%;padding-right:10%;">
+			  <p>Simulate a second-order system under a unit step input:</p>
+			  <p>y''(t) + 2ζωn·y'(t) + ωn²·y(t) = ωn²</p>
+			  <ol>
+				<li>Enter values for damping ratio (z) and natural frequency (wn).</li>
+				<li>Click "Simulate" to see the step response and stability status.</li>
+			  </ol>
+			</div>
+		  </div>
+		</div>
+		<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%">
+		  <div class="column is-2-desktop is-4-tablet is-10-mobile">
+			<div class="box-question">
+			  <div class="fill1">
+				ζ (Damping Ratio) <input type="number" id="zeta" value="0.5" step="0.1">
+			  </div>
+			  <div class="fill1">
+				ωn (Natural Frequency) <input type="number" id="wn" value="1" step="0.1">
+			  </div>
+			  <button class="buttonTotal" onClick="simulateSecondOrderSystem()">Simulate</button>
+			</div>
+		  </div>
+		  <div class="column is-7-desktop is-10-tablet is-10-mobile">
+			<div id="secondOrderPlot"></div>
+		  </div>
+		  <div class="column is-3-desktop is-10-tablet is-5-mobile">
+			<div class="box-question">
+			  <div class="v-datalist-title">Observations</div>
+			  <div id="secondOrderResult"></div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</section>
+  </div>
 
 	<div id="MVG" class="tabcontent">
 		<section class="fre" id="quiz1">

@@ -19,6 +19,18 @@ function openPart(evt, name) {
     {
         ROCQuizInit();
     }
+    else if(!name.localeCompare('PIDT'))
+    {
+        PIDTemperatureQuiz();
+    }
+    else if(!name.localeCompare('CST'))
+    {
+        simulateCustomSystem();
+    }
+    else if(!name.localeCompare('SOST'))
+    {
+        simulateSecondOrderSystem();
+    }
 }
 
 var k;
@@ -406,38 +418,54 @@ function PIDTemperature(){
     }, interval);
 }
 
-// Function to calculate the PID output
+// Function to calculate the PID output with proper integration and derivative terms
 function calculatePIDOutput(error, kp, ki, kd) {
-  const proportional = kp * error;
-  const integral = ki * error;
-  const derivative = kd * error;
-
-  // Return the sum of the PID components
-  return proportional + integral + derivative;
-}
-
-// Function to adjust the system based on the PID output
-function adjustSystem(output) {
-  // Replace this with your code to adjust the system based on the output
-  // For this temperature example, you can simulate heating/cooling actions
-  if (output > 0) {
-    currentTemperature += output;
-  } else {
-    currentTemperature -= Math.abs(output);
+    // Static variables to maintain state between calls
+    if (typeof this.integral === 'undefined') this.integral = 0;
+    if (typeof this.lastError === 'undefined') this.lastError = error;
+    
+    // Calculate PID terms
+    const proportional = kp * error;
+    
+    // Integrate error over time (use trapezoidal integration)
+    this.integral += error * (interval/1000); // interval is in ms, convert to seconds
+    const integral = ki * this.integral;
+    
+    // Calculate derivative (rate of change)
+    const derivative = kd * (error - this.lastError) / (interval/1000);
+    this.lastError = error;
+  
+    // Return combined PID output
+    return proportional + integral + derivative;
   }
-}
-
-// Function to simulate the system's response over time
-function simulateSystemResponse() {
-  // Replace this with your code to simulate the system's response over time
-  // For this temperature example, you can introduce variations, delays, etc.
-  // In this simplified example, we'll assume a gradual approach to the setpoint
-  if (currentTemperature < setpoint) {
-    currentTemperature += Math.random() * (setpoint/40);
-  } else {
-    currentTemperature -= Math.random() * (setpoint/40);
+  
+  // Function to adjust the system with more realistic behavior
+  function adjustSystem(output) {
+    // Add thermal mass simulation - system can't change temperature instantly
+    const thermalMass = 0.1; // Lower = faster response
+    const maxDeltaT = 5.0; // Maximum temperature change per interval
+    
+    // Calculate desired temperature change
+    let deltaT = output * thermalMass;
+    
+    // Limit maximum temperature change per interval
+    deltaT = Math.min(Math.max(deltaT, -maxDeltaT), maxDeltaT);
+    
+    // Update current temperature
+    currentTemperature += deltaT;
   }
-}
+  
+  // Function to simulate the system's response with noise and disturbances
+  function simulateSystemResponse() {
+    // Add random noise to simulate real-world conditions
+    const noise = (Math.random() - 0.5) * 0.1;
+    
+    // Add environmental influence
+    const environmentalFactor = (setpoint - currentTemperature) * 0.01;
+    
+    // Update temperature with noise and environmental factors
+    currentTemperature += noise + environmentalFactor;
+  }
 
 // -------------------------------------------- Separate -------------------------------------------------------------------
 
@@ -504,6 +532,101 @@ function separate(input,select)
     return final;
 }
 
+
+// ----------------------------------------- Custom System -----------------------------------------------------------
+function simulateCustomSystem() {
+    var c1 = parseFloat(document.getElementById("c1").value);
+    var c2 = parseFloat(document.getElementById("c2").value);
+    var aVal = parseFloat(document.getElementById("aVal").value);
+    var bVal = parseFloat(document.getElementById("bVal").value);
+
+    var nData = [];
+    var xData = [];
+
+    // Generate x(n) for n=0..30
+    for (var n = 0; n <= 30; n++) {
+        var xVal = c1 * Math.pow(aVal, n) + c2 * Math.pow(bVal, n);
+        nData.push(n);
+        xData.push(xVal);
+    }
+
+    // Plot results
+    var trace = {
+        x: nData,
+        y: xData,
+        type: 'scatter',
+        mode: 'lines'
+    };
+    var layout = {
+        title: 'Custom System Response',
+        xaxis: { title: 'n' },
+        yaxis: { title: 'x(n)' }
+    };
+    Plotly.newPlot('customSystemPlot', [trace], layout);
+
+    // Check stability: simple check if |a|<1 and |b|<1
+    var res = document.getElementById("customSystemResult");
+    if (Math.abs(aVal) < 1 && Math.abs(bVal) < 1) {
+        res.innerHTML = '<span style="color: green; font-weight:bold;">System is stable</span>';
+    } else {
+        res.innerHTML = '<span style="color: red; font-weight:bold;">System is NOT stable</span>';
+    }
+}
+
+
+// ...existing code...
+function simulateSecondOrderSystem() {
+    // Read user inputs
+    const zeta = parseFloat(document.getElementById("zeta").value);
+    const wn = parseFloat(document.getElementById("wn").value);
+    const resultDiv = document.getElementById("secondOrderResult");
+
+    // Discrete simulation via simple Euler integration (always plot, even if unstable)
+    const dt = 0.01;
+    const totalTime = 5.0;
+    const steps = Math.round(totalTime / dt);
+    let x = 0;
+    let xdot = 0; // system states
+    const tData = [];
+    const yData = [];
+
+    for (let i = 0; i <= steps; i++) {
+        const t = i * dt;
+        tData.push(t);
+
+        // x'' + 2*zeta*wn*x' + wn^2*x = wn^2 (unit step input)
+        const xddot = wn * wn - 2 * zeta * wn * xdot - wn * wn * x;
+
+        // Euler update
+        xdot += xddot * dt;
+        x += xdot * dt;
+
+        yData.push(x);
+    }
+
+    // Plot step response
+    const trace = {
+        x: tData,
+        y: yData,
+        type: 'scatter',
+        mode: 'lines'
+    };
+    const layout = {
+        title: 'Second-Order Step Response',
+        xaxis: { title: 'Time (s)' },
+        yaxis: { title: 'Output' }
+    };
+    Plotly.newPlot('secondOrderPlot', [trace], layout);
+
+    // Display result: stable or not
+    if (zeta > 0 && wn > 0) {
+        resultDiv.innerHTML = '<span style="color:green;font-weight:bold;">System simulated. For ζ>0 and ωn>0, system is stable.</span>';
+    } else {
+        resultDiv.innerHTML = '<span style="color:red;font-weight:bold;">Parameters indicate an unstable or invalid system.</span>';
+    }
+}
+// ...existing code...
+
 // ----------------------------------------------------- ROC QUiz -------------------------------------------------
 
 var pole11 = 0;
@@ -551,8 +674,7 @@ function ROCQuiz()
 
     var flag = 1;
 
-    // Assuming you have a form with the id "myForm"
-    const form = document.getElementById("myForm");
+  
     const yesRadio = document.querySelector('input[name="yesno"][value="yes"]');
     const noRadio = document.querySelector('input[name="yesno"][value="no"]');
 
