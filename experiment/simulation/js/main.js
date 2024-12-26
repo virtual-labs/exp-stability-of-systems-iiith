@@ -694,7 +694,10 @@ function ROCQuiz()
     {
         var polesString = document.getElementById("poles").value;
         var temp = separate(polesString,2);
-
+        console.log(temp);
+        if(temp.length!=2){
+            flag2=0;
+        }
         p1 = temp[0];
         p2 = temp[1];
 
