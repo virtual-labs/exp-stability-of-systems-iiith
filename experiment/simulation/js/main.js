@@ -31,6 +31,12 @@ function openPart(evt, name) {
     {
         simulateSecondOrderSystem();
     }
+    else if(!name.localeCompare('SecondOrderQuiz')){
+        generateRandomSystem();
+    }
+    else if(!name.localeCompare('CustomSystemQuiz')){
+        PIDTemperatureQuiz();
+    }
 }
 
 var k;
@@ -131,7 +137,7 @@ function sPlane(){
             line: {
                 width: 1
             }
-        }
+        }``
     };
     var trace3 = {
         x: w,
@@ -534,6 +540,149 @@ function separate(input,select)
 
 
 // ----------------------------------------- Custom System -----------------------------------------------------------
+
+
+function generateRandomSystem() {
+    const zeta = (Math.random() * 2 - 1).toFixed(2); // Random value between -1 and 1
+    const wn = (Math.random() * 2).toFixed(2); // Random value between 0 and 2
+
+    document.getElementById("zetaQuiz").value = zeta;
+    document.getElementById("wnQuiz").value = wn;
+
+    document.getElementById("secondOrderQuizResult").innerHTML = '';
+    Plotly.newPlot('secondOrderQuizPlot', []);
+}
+
+function checkStability() {
+    const zeta = parseFloat(document.getElementById("zetaQuiz").value);
+    const wn = parseFloat(document.getElementById("wnQuiz").value);
+    const resultDiv = document.getElementById("secondOrderQuizResult");
+
+    // Discrete simulation via simple Euler integration (always plot, even if unstable)
+    const dt = 0.01;
+    const totalTime = 20.0;
+    const steps = Math.round(totalTime / dt);
+    let x = 0;
+    let xdot = 0; // system states
+    const tData = [];
+    const yData = [];
+
+    for (let i = 0; i <= steps; i++) {
+        const t = i * dt;
+        tData.push(t);
+
+        // x'' + 2*zeta*wn*x' + wn^2*x = wn^2 (unit step input)
+        const xddot = wn * wn - 2 * zeta * wn * xdot - wn * wn * x;
+
+        // Euler update
+        xdot += xddot * dt;
+        x += xdot * dt;
+
+        yData.push(x);
+    }
+
+    // Plot step response
+    const trace = {
+        x: tData,
+        y: yData,
+        type: 'scatter',
+        mode: 'lines'
+    };
+    const layout = {
+        title: 'Second-Order Step Response',
+        xaxis: { title: 'Time (s)' },
+        yaxis: { title: 'Output' }
+    };
+    Plotly.newPlot('secondOrderQuizPlot', [trace], layout);
+
+    // Check user answer
+    const stabilityForm = document.getElementById("stabilityForm");
+    const userAnswer = stabilityForm.elements["stability"].value;
+    const isStable = zeta > 0 && wn > 0;
+
+    if ((isStable && userAnswer === "yes") || (!isStable && userAnswer === "no")) {
+        resultDiv.innerHTML = '<span style="color:green;font-weight:bold;">Correct! The system is ' + (isStable ? 'stable' : 'unstable') + '.</span>';
+    } else {
+        resultDiv.innerHTML = '<span style="color:red;font-weight:bold;">Incorrect. The system is ' + (isStable ? 'stable' : 'unstable') + '.</span>';
+    }
+}
+
+
+
+
+
+function generateRandomCustomSystem() {
+    var wannakeepStable = Math.random() ;
+    var c1,c2,aVal,bVal;
+    if(wannakeepStable>0.5){
+         c1 = (Math.random() * 6 - 1).toFixed(2); 
+     c2 = (Math.random() * 6 - 1).toFixed(2); 
+     aVal = (Math.random() * 6 - 1).toFixed(2); 
+     bVal = (Math.random() * 6 - 1).toFixed(2); 
+
+    }
+    else{
+         c1 = (Math.random() * 5 - 1).toFixed(2); 
+     c2 = (Math.random() * 5 - 1).toFixed(2); 
+     aVal = (Math.random() * 2 - 1).toFixed(2); 
+     bVal = (Math.random() * 2 - 1).toFixed(2); 
+    }
+    
+    document.getElementById("c1Quiz").value = c1;
+    document.getElementById("c2Quiz").value = c2;
+    document.getElementById("aValQuiz").value = aVal;
+    document.getElementById("bValQuiz").value = bVal;
+
+    document.getElementById("customSystemQuizResult").innerHTML = '';
+    Plotly.newPlot('customSystemQuizPlot', []);
+}
+
+function checkCustomSystemStability() {
+    const c1 = parseFloat(document.getElementById("c1Quiz").value);
+    const c2 = parseFloat(document.getElementById("c2Quiz").value);
+    const aVal = parseFloat(document.getElementById("aValQuiz").value);
+    const bVal = parseFloat(document.getElementById("bValQuiz").value);
+    const resultDiv = document.getElementById("customSystemQuizResult");
+
+    var nData = [];
+    var xData = [];
+
+    // Generate x(n) for n=0..30
+    for (var n = 0; n <= 30; n++) {
+        var xVal = c1 * Math.pow(aVal, n) + c2 * Math.pow(bVal, n);
+        nData.push(n);
+        xData.push(xVal);
+    }
+
+    // Plot results
+    var trace = {
+        x: nData,
+        y: xData,
+        type: 'scatter',
+        mode: 'lines'
+    };
+    var layout = {
+        title: 'Custom System Response',
+        xaxis: { title: 'n' },
+        yaxis: { title: 'x(n)' }
+    };
+    Plotly.newPlot('customSystemQuizPlot', [trace], layout);
+
+    // Check stability: simple check if |a|<1 and |b|<1
+    const isStable = Math.abs(aVal) < 1 && Math.abs(bVal) < 1;
+
+    // Check user answer
+    const stabilityForm = document.getElementById("customStabilityForm");
+    const userAnswer = stabilityForm.elements["customStability"].value;
+
+    if ((isStable && userAnswer === "yes") || (!isStable && userAnswer === "no")) {
+        resultDiv.innerHTML = '<span style="color:green;font-weight:bold;">Correct! The system is ' + (isStable ? 'stable' : 'unstable') + '.</span>';
+    } else {
+        resultDiv.innerHTML = '<span style="color:red;font-weight:bold;">Incorrect. The system is ' + (isStable ? 'stable' : 'unstable') + '.</span>';
+    }
+}
+
+
 function simulateCustomSystem() {
     var c1 = parseFloat(document.getElementById("c1").value);
     var c2 = parseFloat(document.getElementById("c2").value);
@@ -574,7 +723,6 @@ function simulateCustomSystem() {
 }
 
 
-// ...existing code...
 function simulateSecondOrderSystem() {
     // Read user inputs
     const zeta = parseFloat(document.getElementById("zeta").value);
@@ -625,7 +773,7 @@ function simulateSecondOrderSystem() {
         resultDiv.innerHTML = '<span style="color:red;font-weight:bold;">Parameters indicate an unstable or invalid system.</span>';
     }
 }
-// ...existing code...
+
 
 // ----------------------------------------------------- ROC QUiz -------------------------------------------------
 
