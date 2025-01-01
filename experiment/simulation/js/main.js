@@ -655,38 +655,37 @@ function checkStability() {
 }
 
 
-
 function generateRandomCustomSystem() {
-    var wannakeepStable = Math.random() ;
-    var c1,c2,aVal,bVal;
-    if(wannakeepStable>0.5){
-         c1 = (Math.random() * 6 - 1).toFixed(2); 
-     c2 = (Math.random() * 6 - 1).toFixed(2); 
-     aVal = (Math.random() * 6 - 1).toFixed(2); 
-     bVal = (Math.random() * 6 - 1).toFixed(2); 
+    const stabilityFactor = Math.random();
+    let aVal, bVal, cVal, dVal;
 
+    if (stabilityFactor > 0.5) {
+        aVal = (Math.random() * 4 - 2).toFixed(2); 
+        bVal = (Math.random() * 4 - 2).toFixed(2); 
+        cVal = (Math.random() * 4 - 2).toFixed(2); 
+        dVal = (Math.random() * 4 - 2).toFixed(2); 
+    } else {
+        
+        aVal = (Math.random() * 2 - 1).toFixed(2); 
+        bVal = (Math.random() * 2 - 1).toFixed(2); 
+        cVal = (Math.random() * 2 - 1).toFixed(2); 
+        dVal = (Math.random() * 2 - 1).toFixed(2); 
     }
-    else{
-         c1 = (Math.random() * 5 - 1).toFixed(2); 
-     c2 = (Math.random() * 5 - 1).toFixed(2); 
-     aVal = (Math.random() * 2 - 1).toFixed(2); 
-     bVal = (Math.random() * 2 - 1).toFixed(2); 
-    }
-    
-    document.getElementById("c1Quiz").value = c1;
-    document.getElementById("c2Quiz").value = c2;
+
     document.getElementById("aValQuiz").value = aVal;
     document.getElementById("bValQuiz").value = bVal;
+    document.getElementById("cValQuiz").value = cVal;
+    document.getElementById("dValQuiz").value = dVal;
 
     document.getElementById("customSystemQuizResult").innerHTML = '';
     Plotly.newPlot('customSystemQuizPlot', []);
 }
 
 function checkCustomSystemStability() {
-    const c1 = parseFloat(document.getElementById("c1Quiz").value);
-    const c2 = parseFloat(document.getElementById("c2Quiz").value);
     const aVal = parseFloat(document.getElementById("aValQuiz").value);
     const bVal = parseFloat(document.getElementById("bValQuiz").value);
+    const cVal = parseFloat(document.getElementById("cValQuiz").value);
+    const dVal = parseFloat(document.getElementById("dValQuiz").value);
     const resultDiv = document.getElementById("customSystemQuizResult");
 
     var nData = [];
@@ -694,7 +693,7 @@ function checkCustomSystemStability() {
 
     // Generate x(n) for n=0..30
     for (var n = 0; n <= 30; n++) {
-        var xVal = c1 * Math.pow(aVal, n) + c2 * Math.pow(bVal, n);
+        var xVal = math.add(math.pow(math.complex(aVal, bVal), n), math.pow(math.complex(cVal, dVal), n));
         nData.push(n);
         xData.push(xVal);
     }
@@ -702,7 +701,7 @@ function checkCustomSystemStability() {
     // Plot results
     var trace = {
         x: nData,
-        y: xData,
+        y: xData.map(val => val.re), // Plot the real part
         type: 'scatter',
         mode: 'lines'
     };
@@ -714,7 +713,9 @@ function checkCustomSystemStability() {
     Plotly.newPlot('customSystemQuizPlot', [trace], layout);
 
     // Check stability: simple check if |a|<1 and |b|<1
-    const isStable = Math.abs(aVal) < 1 && Math.abs(bVal) < 1;
+    var moda = math.sqrt(aVal * aVal + bVal * bVal);
+    var modc = math.sqrt(cVal * cVal + dVal * dVal);
+    const isStable = moda < 1 && modc < 1;
 
     // Check user answer
     const stabilityForm = document.getElementById("customStabilityForm");
@@ -726,7 +727,6 @@ function checkCustomSystemStability() {
         resultDiv.innerHTML = '<span style="color:red;font-weight:bold;">Incorrect. The system is ' + (isStable ? 'stable' : 'unstable') + '.</span>';
     }
 }
-
 
 
 

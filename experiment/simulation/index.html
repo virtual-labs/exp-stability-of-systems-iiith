@@ -20,12 +20,12 @@
         </div>
         <div class="column">
             <div class="tab">
+				<button class="tablinks" onclick="openPart(event, 'CustomSystemQuiz')">Custom System Quiz</button>
+				<button class="tablinks" onclick="openPart(event, 'SecondOrderQuiz')">Second Order System Quiz</button>
                 <button class="tablinks" onclick="openPart(event, 'FR')", id="default">PID Controller</button>
                 <button class="tablinks" onclick="openPart(event, 'SYS')">PID Temperature</button>
 				<!-- <button class="tablinks" onclick="openPart(event, 'SynthSys')">Custom System</button> -->
-				<button class="tablinks" onclick="openPart(event, 'CustomSystemQuiz')">Custom System Quiz</button>
 
-				<button class="tablinks" onclick="openPart(event, 'SecondOrderQuiz')">Second Order System Quiz</button>
 
 				<!-- <button class="tablinks" onclick="openPart(event, 'SecondOrderSys')">Second Order System</button> -->
 
@@ -204,66 +204,66 @@
 
 
 <div id="CustomSystemQuiz" class="tabcontent">
-	<section class="fre" id="customSystemQuiz">
-	  <div class="max-width">
-		<h2 class="title">Custom System Stability Quiz</h2>
-		<div class="columns is-centered">
-		  <div class="v-collapsible-instruction-container v-instruction-container" style="margin-top: 2%;">
-			<div class="v-collapsible is-size-5">Instructions</div>
-			<div class="v-content" style="text-align:left; padding-left:10%;padding-right:10%;">
-			  <p>Determine if the given custom system is stable:</p>
-			  <p>C1·a^n·u(n) + C2·b^n·u(n)</p>
-			  <ol>
-				<li>Click "Generate System" to get random parameters.</li>
-				<li>Check if the system is stable or not.</li>
-				<li>Click "Check Stability" to verify your answer and see the response.</li>
-			  </ol>
-			</div>
-		  </div>
-		</div>
-		<div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%">
-		  <div class="column is-2-desktop is-4-tablet is-10-mobile">
-			<div class="box-question">
-			  <div class="fill1">
-				C1 <input type="number" id="c1Quiz" readonly>
-			  </div>
-			  <div class="fill1">
-				C2 <input type="number" id="c2Quiz" readonly>
-			  </div>
-			  <div class="fill1">
-				a <input type="number" id="aValQuiz" readonly>
-			  </div>
-			  <div class="fill1">
-				b <input type="number" id="bValQuiz" readonly>
-			  </div>
-			  <button class="buttonTotal" onClick="generateRandomCustomSystem()">Generate System</button>
-			  <div class="form1">
-				<h3 style="margin-left: -10%; margin-bottom: 10%;"> <b> Is the system stable? </b> </h3>
-				<form id="customStabilityForm">
-				  <label>
-					<input type="radio" name="customStability" value="yes"> Yes
-				  </label>
-				  <label>
-					<input type="radio" name="customStability" value="no"> No
-				  </label>
-				</form>
-			  </div>
-			  <button class="buttonTotal" onClick="checkCustomSystemStability()">Check Stability</button>
-			</div>
-		  </div>
-		  <div class="column is-7-desktop is-10-tablet is-10-mobile">
-			<div id="customSystemQuizPlot"></div>
-		  </div>
-		  <div class="column is-3-desktop is-10-tablet is-5-mobile">
-			<div class="box-question">
-			  <div class="v-datalist-title">Observations</div>
-			  <div id="customSystemQuizResult"></div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	</section>
-  </div>
+    <section class="fre" id="customSystemQuiz">
+      <div class="max-width">
+        <h2 class="title">Custom System Stability Quiz</h2>
+        <div class="columns is-centered">
+          <div class="v-collapsible-instruction-container v-instruction-container" style="margin-top: 2%;">
+            <div class="v-collapsible is-size-5">Instructions</div>
+            <div class="v-content" style="text-align:left; padding-left:10%;padding-right:10%;">
+              <p>Determine if the given custom system is stable:</p>
+              <p>(a + ib)^n u(n) + (c + id)^n u(n)</p>
+              <ol>
+                <li>Click "Generate System" to get random parameters.</li>
+                <li>Check if the system is stable or not.</li>
+                <li>Click "Check Stability" to verify your answer and see the response.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-centered is-flex-direction-row is-flex-wrap-wrap is-align-content-start" style="margin-top:-1.5%">
+          <div class="column is-2-desktop is-4-tablet is-10-mobile">
+            <div class="box-question">
+              <div class="fill1">
+                a <input type="number" id="aValQuiz" readonly>
+              </div>
+              <div class="fill1">
+                b <input type="number" id="bValQuiz" readonly>
+              </div>
+              <div class="fill1">
+                c <input type="number" id="cValQuiz" readonly>
+              </div>
+              <div class="fill1">
+                d <input type="number" id="dValQuiz" readonly>
+              </div>
+              <button class="buttonTotal" onClick="generateRandomCustomSystem()">Generate System</button>
+              <div class="form1">
+                <h3 style="margin-left: -10%; margin-bottom: 10%;"> <b> Is the system stable? </b> </h3>
+                <form id="customStabilityForm">
+                  <label>
+                    <input type="radio" name="customStability" value="yes"> Yes
+                  </label>
+                  <label>
+                    <input type="radio" name="customStability" value="no"> No
+                  </label>
+                </form>
+              </div>
+              <button class="buttonTotal" onClick="checkCustomSystemStability()">Check Stability</button>
+            </div>
+          </div>
+          <div class="column is-7-desktop is-10-tablet is-10-mobile">
+            <div id="customSystemQuizPlot"></div>
+          </div>
+          <div class="column is-3-desktop is-10-tablet is-5-mobile">
+            <div class="box-question">
+              <div class="v-datalist-title">Observations</div>
+              <div id="customSystemQuizResult"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
   
 
 <div id="SecondOrderSys" class="tabcontent">
@@ -502,6 +502,7 @@
 	<script src="./js/math.js"></script>
 	<script src="./js/plotly.js"></script>
 	<script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.min.js"></script>
 
 </body>
 
