@@ -551,7 +551,9 @@ function generateRandomSystem() {
 
     document.getElementById("secondOrderQuizResult").innerHTML = '';
     Plotly.newPlot('secondOrderQuizPlot', []);
+    Plotly.newPlot('poleZeroQuizPlot', []);
 }
+
 
 function checkStability() {
     const zeta = parseFloat(document.getElementById("zetaQuiz").value);
@@ -560,7 +562,7 @@ function checkStability() {
 
     // Discrete simulation via simple Euler integration (always plot, even if unstable)
     const dt = 0.01;
-    const totalTime = 20.0;
+    const totalTime = 10.0; // Extend simulation time to 10 seconds
     const steps = Math.round(totalTime / dt);
     let x = 0;
     let xdot = 0; // system states
@@ -595,6 +597,51 @@ function checkStability() {
     };
     Plotly.newPlot('secondOrderQuizPlot', [trace], layout);
 
+    // Calculate poles
+    const realPart = -zeta * wn;
+    const imagPart = wn * Math.sqrt(1 - zeta * zeta);
+
+    const poles = [
+        { x: realPart, y: imagPart },
+        { x: realPart, y: -imagPart }
+    ];
+
+    // Plot poles and zeros
+    const poleTrace = {
+        x: poles.map(p => p.x),
+        y: poles.map(p => p.y),
+        type: 'scatter',
+        mode: 'markers',
+        marker: {
+            symbol: 'x',
+            size: 10,
+            color: 'red'
+        },
+        name: 'Poles'
+    };
+
+    const zeroTrace = {
+        x: [0],
+        y: [0],
+        type: 'scatter',
+        mode: 'markers',
+        marker: {
+            symbol: 'circle',
+            size: 10,
+            color: 'blue'
+        },
+        name: 'Zero'
+    };
+
+    const poleZeroLayout = {
+        title: 'Poles and Zeros',
+        xaxis: { title: 'Real Part' },
+        yaxis: { title: 'Imaginary Part' },
+        showlegend: true
+    };
+
+    Plotly.newPlot('poleZeroQuizPlot', [poleTrace, zeroTrace], poleZeroLayout);
+
     // Check user answer
     const stabilityForm = document.getElementById("stabilityForm");
     const userAnswer = stabilityForm.elements["stability"].value;
@@ -606,8 +653,6 @@ function checkStability() {
         resultDiv.innerHTML = '<span style="color:red;font-weight:bold;">Incorrect. The system is ' + (isStable ? 'stable' : 'unstable') + '.</span>';
     }
 }
-
-
 
 
 
@@ -683,6 +728,8 @@ function checkCustomSystemStability() {
 }
 
 
+
+
 function simulateCustomSystem() {
     var c1 = parseFloat(document.getElementById("c1").value);
     var c2 = parseFloat(document.getElementById("c2").value);
@@ -722,7 +769,6 @@ function simulateCustomSystem() {
     }
 }
 
-
 function simulateSecondOrderSystem() {
     // Read user inputs
     const zeta = parseFloat(document.getElementById("zeta").value);
@@ -731,7 +777,7 @@ function simulateSecondOrderSystem() {
 
     // Discrete simulation via simple Euler integration (always plot, even if unstable)
     const dt = 0.01;
-    const totalTime = 5.0;
+    const totalTime = 10.0; // Extend simulation time to 10 seconds
     const steps = Math.round(totalTime / dt);
     let x = 0;
     let xdot = 0; // system states
@@ -764,7 +810,52 @@ function simulateSecondOrderSystem() {
         xaxis: { title: 'Time (s)' },
         yaxis: { title: 'Output' }
     };
-    Plotly.newPlot('secondOrderPlot', [trace], layout);
+    Plotly.newPlot('secondOrderQuizPlot', [trace], layout);
+
+    // Calculate poles
+    const realPart = -zeta * wn;
+    const imagPart = wn * Math.sqrt(1 - zeta * zeta);
+
+    const poles = [
+        { x: realPart, y: imagPart },
+        { x: realPart, y: -imagPart }
+    ];
+
+    // Plot poles and zeros
+    const poleTrace = {
+        x: poles.map(p => p.x),
+        y: poles.map(p => p.y),
+        type: 'scatter',
+        mode: 'markers',
+        marker: {
+            symbol: 'x',
+            size: 10,
+            color: 'red'
+        },
+        name: 'Poles'
+    };
+
+    const zeroTrace = {
+        x: [0],
+        y: [0],
+        type: 'scatter',
+        mode: 'markers',
+        marker: {
+            symbol: 'circle',
+            size: 10,
+            color: 'blue'
+        },
+        name: 'Zero'
+    };
+
+    const poleZeroLayout = {
+        title: 'Poles and Zeros',
+        xaxis: { title: 'Real Part' },
+        yaxis: { title: 'Imaginary Part' },
+        showlegend: true
+    };
+
+    Plotly.newPlot('poleZeroQuizPlot', [poleTrace, zeroTrace], poleZeroLayout);
 
     // Display result: stable or not
     if (zeta > 0 && wn > 0) {
@@ -773,7 +864,6 @@ function simulateSecondOrderSystem() {
         resultDiv.innerHTML = '<span style="color:red;font-weight:bold;">Parameters indicate an unstable or invalid system.</span>';
     }
 }
-
 
 // ----------------------------------------------------- ROC QUiz -------------------------------------------------
 
