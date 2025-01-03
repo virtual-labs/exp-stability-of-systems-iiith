@@ -64,7 +64,6 @@ function sPlane(){
     ki = parseFloat(ki1);
     var kd1 = document.getElementById("kd").value;
     kd = parseFloat(kd1);
-
     N = 1001;
 
     var inside = ((1+kp)*(1+kp)) - 4*kd*ki;
@@ -137,7 +136,7 @@ function sPlane(){
             line: {
                 width: 1
             }
-        }``
+        }
     };
     var trace3 = {
         x: w,
