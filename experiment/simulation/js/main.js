@@ -35,7 +35,7 @@ function openPart(evt, name) {
         generateRandomSystem();
     }
     else if(!name.localeCompare('CustomSystemQuiz')){
-        PIDTemperatureQuiz();
+        generateRandomCustomSystem();
     }
 }
 
@@ -462,16 +462,26 @@ function calculatePIDOutput(error, kp, ki, kd) {
   
   // Function to simulate the system's response with noise and disturbances
   function simulateSystemResponse() {
-    // Add random noise to simulate real-world conditions
-    const noise = (Math.random() - 0.5) * 0.1;
+    const noiseLevels = {
+        'none': 0,
+        'low': 0.05,
+        'medium': 0.1,
+        'high': 0.2
+    };
+
+    // Get selected noise level
+    const noiseLevel = document.getElementById("noiseLevel").value;
+    const noiseFactor = noiseLevels[noiseLevel];
+    
+    // Add random noise based on selected level
+    const noise = (Math.random() - 0.5) * noiseFactor;
     
     // Add environmental influence
     const environmentalFactor = (setpoint - currentTemperature) * 0.01;
     
     // Update temperature with noise and environmental factors
     currentTemperature += noise + environmentalFactor;
-  }
-
+}
 // -------------------------------------------- Separate -------------------------------------------------------------------
 
 function separate(input,select)
