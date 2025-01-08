@@ -20,9 +20,9 @@
         </div>
         <div class="column">
             <div class="tab">
-				<button class="tablinks" onclick="openPart(event, 'CustomSystemQuiz')">Custom System Quiz</button>
+				<button class="tablinks" onclick="openPart(event, 'CustomSystemQuiz')"  id="default">System Stability Quiz</button>
 				<button class="tablinks" onclick="openPart(event, 'SecondOrderQuiz')">Second Order System Quiz</button>
-                <button class="tablinks" onclick="openPart(event, 'FR')", id="default">PID Controller</button>
+                <button class="tablinks" onclick="openPart(event, 'FR')">PID Controller</button>
                 <button class="tablinks" onclick="openPart(event, 'SYS')">PID Temperature</button>
 				<!-- <button class="tablinks" onclick="openPart(event, 'SynthSys')">Custom System</button> -->
 
@@ -120,11 +120,20 @@
 			style="margin-top:-1.5%">
 			<div class="column is-2-desktop is-4-tablet is-10-mobile">
 				<div class="box-question">
-					<div class="fill1"> Current Temperature &emsp; <input type=number id="temp" value=0.3 step=0.5> </div>
-					<div class="fill1"> Set Temperature &emsp; <input type=number id="tempSet" value=0.3 step=0.5> </div>
-					<div class="fill1"> Proportional: (kp) &emsp; <input type=number id="kp1" value=0.3 step=0.5> </div>
-					<div class="fill1"> Integral: (ki) &emsp; <input type=number id="ki1" value=0.3 step=0.5> </div>
-					<div class="fill1"> Differential: (kd) &emsp; <input type=number id="kd1" value=0.3 step=0.5> </div>
+					<div class="fill1"> Current Temperature &emsp; <input type=number id="temp" value=30 step=0.5> </div>
+					<div class="fill1"> Set Temperature &emsp; <input type=number id="tempSet" value=18 step=0.5> </div>
+					<div class="fill1"> Proportional: (kp) &emsp; <input type=number id="kp1" value=3 step=0.5> </div>
+					<div class="fill1"> Integral: (ki) &emsp; <input type=number id="ki1" value=2 step=0.5> </div>
+					<div class="fill1"> Differential: (kd) &emsp; <input type=number id="kd1" value=2 step=0.5> </div>
+					<div class="fill1"> 
+						Noise Level: &emsp;
+						<select id="noiseLevel" class="select">
+							<option value="none">None</option>
+							<option value="low">Little</option>
+							<option value="medium">Medium</option>
+							<option value="high">High</option>
+						</select>
+					</div>
 					<button class="buttonTotal" id="jsbutton2" role="button" onClick="PIDTemperature()">Simulate</button>
 				</div>
 			</div>
@@ -156,7 +165,7 @@
 <div id="SynthSys" class="tabcontent">
     <section class="fre" id="mysys">
         <div class="max-width">
-            <h2 class="title">Custom System Builder</h2>
+            <h2 class="title"> System Builder</h2>
             <div class="columns is-centered">
                 <div class="v-collapsible-instruction-container v-instruction-container" style="margin-top: 2%;">
                     <div class="v-collapsible is-size-5">Instructions</div>
@@ -206,12 +215,12 @@
 <div id="CustomSystemQuiz" class="tabcontent">
     <section class="fre" id="customSystemQuiz">
       <div class="max-width">
-        <h2 class="title">Custom System Stability Quiz</h2>
+        <h2 class="title">System Stability Quiz</h2>
         <div class="columns is-centered">
           <div class="v-collapsible-instruction-container v-instruction-container" style="margin-top: 2%;">
             <div class="v-collapsible is-size-5">Instructions</div>
             <div class="v-content" style="text-align:left; padding-left:10%;padding-right:10%;">
-              <p>Determine if the given custom system is stable:</p>
+              <p>Determine if the given system is stable:</p>
               <p>(a + ib)^n u(n) + (c + id)^n u(n)</p>
               <ol>
                 <li>Click "Generate System" to get random parameters.</li>
