@@ -427,8 +427,8 @@ function calculatePIDOutput(error, kp, ki, kd) {
     const noiseLevels = {
         'none': 0,
         'low': 0.05,
-        'medium': 0.1,
-        'high': 0.2
+        'medium': 1,
+        'high': 5
     };
 
     // Get selected noise level
@@ -443,6 +443,15 @@ function calculatePIDOutput(error, kp, ki, kd) {
     
     // Update temperature with noise and environmental factors
     currentTemperature += noise + environmentalFactor;
+}
+
+function simulateSystemResponseQ() {
+    
+    // Add environmental influence
+    const environmentalFactor = (setpoint - currentTemperature) * 0.01;
+    
+    // Update temperature with noise and environmental factors
+    currentTemperature += environmentalFactor;
 }
 // -------------------------------------------- Separate -------------------------------------------------------------------
 
@@ -1162,17 +1171,6 @@ function PIDTemperatureQuiz(){
     }, interval);
 }
 
-// Function to simulate the system's response over time
-function simulateSystemResponseQ() {
-  // Replace this with your code to simulate the system's response over time
-  // For this temperature example, you can introduce variations, delays, etc.
-  // In this simplified example, we'll assume a gradual approach to the setpoint
-  if (currentTemperature < setpoint) {
-    currentTemperature += Math.random() * 0;
-  } else {
-    currentTemperature -= Math.random() * 0;
-  }
-}
 
 /* ---------------------------- LinSpace -------------------------------------- */
 
