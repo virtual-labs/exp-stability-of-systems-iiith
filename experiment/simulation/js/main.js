@@ -56,61 +56,53 @@ figure.addEventListener('click', () => {
 
 // ------------------------------------------ PID Intro ----------------------------------------------------------
 
-function sPlane(){
-
+function sPlane() {
     var kp1 = document.getElementById("kp").value;
-    kp = parseFloat(kp1);
     var ki1 = document.getElementById("ki").value;
-    ki = parseFloat(ki1);
     var kd1 = document.getElementById("kd").value;
-    kd = parseFloat(kd1);
-    N = 1001;
+    var kp = parseFloat(kp1);
+    var ki = parseFloat(ki1);
+    var kd = parseFloat(kd1);
 
-    var inside = ((1+kp)*(1+kp)) - 4*kd*ki;
     var polesReal = [];
     var polesImag = [];
-
-    if(inside<0)
-    {
-        polesReal.push(-(1+kp)/(2*kd));
-        polesReal.push(-(1+kp)/(2*kd));
-        polesImag.push(Math.sqrt(-inside)/(2*kd));
-        polesImag.push(-Math.sqrt(-inside)/(2*kd));
-    }
-    else
-    {
-        polesReal.push(-(1+kp+(Math.sqrt(inside)))/(2*kd));
-        polesReal.push(-(1+kp-(Math.sqrt(inside)))/(2*kd));
-        polesImag.push(0);
-        polesImag.push(0);
-    }
-
-    var inside = ((kp)*(kp)) - 4*kd*ki;
-
     var zerosReal = [];
     var zerosImag = [];
 
-    if(inside<0)
-    {
-        zerosReal.push(-(kp)/(2*kd));
-        zerosReal.push(-(kp)/(2*kd));
-        zerosImag.push(Math.sqrt(-inside)/(2*kd));
-        zerosImag.push(-Math.sqrt(-inside)/(2*kd));
-    }
-    else
-    {
-        zerosReal.push(-(kp+(Math.sqrt(inside)))/(2*kd));
-        zerosReal.push(-(kp-(Math.sqrt(inside)))/(2*kd));
+    if (kd === 0) {
+        // Handle the case when kd is zero
+        polesReal.push(-ki / kp);
+        polesImag.push(0);
+        zerosReal.push(-kp / ki);
         zerosImag.push(0);
-        zerosImag.push(0);
-    }
+    } else {
+        var inside = ((1 + kp) * (1 + kp)) - 4 * kd * ki;
 
-    w = makeArr(-math.PI,math.PI,N);
-    plty = [];
+        if (inside < 0) {
+            polesReal.push(-(1 + kp) / (2 * kd));
+            polesReal.push(-(1 + kp) / (2 * kd));
+            polesImag.push(Math.sqrt(-inside) / (2 * kd));
+            polesImag.push(-Math.sqrt(-inside) / (2 * kd));
+        } else {
+            polesReal.push(-(1 + kp + Math.sqrt(inside)) / (2 * kd));
+            polesReal.push(-(1 + kp - Math.sqrt(inside)) / (2 * kd));
+            polesImag.push(0);
+            polesImag.push(0);
+        }
 
-    for(var i=0; i<N; i++)
-    {
-        plty.push(((ki-(kd*w[i]))*(ki-(kd*w[i]))+(w[i]*kp)*(w[i]*kp))/((ki-(kd*w[i]))*(ki-(kd*w[i]))+(w[i]*(kp+1))*(w[i]*(kp+1))));
+        inside = (kp * kp) - 4 * kd * ki;
+
+        if (inside < 0) {
+            zerosReal.push(-kp / (2 * kd));
+            zerosReal.push(-kp / (2 * kd));
+            zerosImag.push(Math.sqrt(-inside) / (2 * kd));
+            zerosImag.push(-Math.sqrt(-inside) / (2 * kd));
+        } else {
+            zerosReal.push(-(kp + Math.sqrt(inside)) / (2 * kd));
+            zerosReal.push(-(kp - Math.sqrt(inside)) / (2 * kd));
+            zerosImag.push(0);
+            zerosImag.push(0);
+        }
     }
 
     var trace1 = {
@@ -138,27 +130,10 @@ function sPlane(){
             }
         }
     };
-    var trace3 = {
-        x: w,
-        y: plty,
-        type: 'scatter',
-        mode: 'line',
-    };
-      
-    var data = [trace1, trace2];
-    var data1 = [trace3];
 
-    var config = {responsive: true}
-    var layout1 = {
-        title: '|H(s)|',
-        showlegend: false,
-        xaxis: {
-            title: 'Frequency'
-        },
-        yaxis: {
-            title: 'Magnitude'
-        }
-    };
+    var data = [trace1, trace2];
+
+    var config = { responsive: true };
     var layout2 = {
         title: 's-Plane',
         showlegend: false,
@@ -170,23 +145,20 @@ function sPlane(){
             yref: 'paper',
             y1: 1,
             line: {
-              width: 2,
-              dash: 'dot'
+                width: 2,
+                dash: 'dot'
             }
         }]
     };
-      
+
     Plotly.newPlot('figure1', data, layout2, config);
-            
-    if(screen.width < 400)
-    {
+
+    if (screen.width < 400) {
         var update = {
-            width: 0.7*screen.width,
+            width: 0.7 * screen.width,
             height: 400
         };
-    }
-    else
-    {
+    } else {
         var update = {
             width: 350,
             height: 400
@@ -194,26 +166,16 @@ function sPlane(){
     }
 
     Plotly.relayout('figure1', update);
-    Plotly.newPlot('figure2', data1, layout1, config);
-            
-    if(screen.width < 400)
-    {
-        var update = {
-            width: 0.7*screen.width,
-            height: 400
-        };
-    }
-    else
-    {
-        var update = {
-            width: 350,
-            height: 400
-        };
-    }
-
-    Plotly.relayout('figure2', update);
 }
 
+function makeArr(start, end, num) {
+    var arr = [];
+    var step = (end - start) / (num - 1);
+    for (var i = 0; i < num; i++) {
+        arr.push(start + (step * i));
+    }
+    return arr;
+}
 // ------------------------------------------------- PID Working Temperature -----------------------------------------------
 
 var setpoint = 0;
