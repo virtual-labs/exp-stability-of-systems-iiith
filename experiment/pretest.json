@@ -2,37 +2,54 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "For a system with characteristic equation $s^2 + 4s + 4 = 0$, what are the poles?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "$s = -2$ (repeated root)",
+        "b": "$s = \\pm 2$",
+        "c": "$s = -4$ (repeated root)", 
+        "d": "$s = \\pm 4$"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Correct! The equation can be factored as $(s+2)(s+2)=0$, giving a repeated pole at $s=-2$",
+        "b": "Incorrect. The equation is not in the form $s^2-4=0$",
+        "c": "Incorrect. Substitute $s=-4$ to verify it's not a solution",
+        "d": "Incorrect. The roots must be negative for this characteristic equation"
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "A system has poles at $s = -1 \\pm j$. What can be said about its stability?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Unstable because complex poles exist",
+        "b": "Stable because real parts are negative",
+        "c": "Marginally stable due to imaginary parts",
+        "d": "Cannot determine without zeros"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Incorrect. Complex poles don't imply instability",
+        "b": "Correct! For stability, all poles must have negative real parts, which is true here",
+        "c": "Incorrect. Marginal stability occurs when real parts are zero",
+        "d": "Incorrect. Stability is determined by pole locations alone"
       },
-      "correctAnswer": "c",
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "For a PID controller, which term helps reduce steady-state error?",
+      "answers": {
+        "a": "Proportional ($K_p$)",
+        "b": "Integral ($K_i$)",
+        "c": "Derivative ($K_d$)",
+        "d": "None of the above"
+      },
+      "explanations": {
+        "a": "Incorrect. Proportional term reduces but cannot eliminate steady-state error",
+        "b": "Correct! The integral term accumulates error over time, eliminating steady-state error",
+        "c": "Incorrect. Derivative term helps with transient response",
+        "d": "Incorrect. The integral term serves this purpose"
+      },
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
   ]

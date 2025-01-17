@@ -2,38 +2,72 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "For a second-order system $y''(t) + 2\\zeta\\omega_n y'(t) + \\omega_n^2y(t) = \\omega_n^2$, what is the condition for stability?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "$\\zeta > 0$ and $\\omega_n > 0$",
+        "b": "$\\zeta < 0$ and $\\omega_n > 0$",
+        "c": "Only $\\omega_n > 0$ matters",
+        "d": "Only $\\zeta > 0$ matters"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Correct! Both $\\zeta > 0$ and $\\omega_n > 0$ are required for stability",
+        "b": "Incorrect. Negative damping ratio leads to instability",
+        "c": "Incorrect. Negative damping with positive $\\omega_n$ is unstable",
+        "d": "Incorrect. Both parameters affect stability"
       },
       "correctAnswer": "a",
-      "difficulty": "beginner"
+      "difficulty": "intermediate"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "For a complex system $(a + ib)^n u(n)$, what determines its stability?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Only the real part of $(a + ib)$",
+        "b": "Only the imaginary part of $(a + ib)$",
+        "c": "The magnitude $|a + ib|$ must be less than 1",
+        "d": "The phase angle of $(a + ib)$"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Incorrect. Both real and imaginary parts contribute to stability",
+        "b": "Incorrect. The magnitude determines stability",
+        "c": "Correct! The magnitude must be less than 1 for the system to be stable",
+        "d": "Incorrect. Phase angle doesn't determine stability alone"
       },
       "correctAnswer": "c",
-      "difficulty": "beginner"
+      "difficulty": "advanced"
+    },
+    {
+      "question": "What effect does noise have on a PID-controlled system?",
+      "answers": {
+        "a": "No effect if PID gains are properly tuned",
+        "b": "Only affects the proportional term",
+        "c": "Can cause oscillations and impact derivative control significantly",
+        "d": "Only affects the integral term"
+      },
+      "explanations": {
+        "a": "Incorrect. Noise always affects system performance to some degree",
+        "b": "Incorrect. Noise affects all terms, especially derivative",
+        "c": "Correct! Noise can cause oscillations and particularly impacts derivative control due to amplification of rapid changes",
+        "d": "Incorrect. Noise affects all terms of PID control"
+      },
+      "correctAnswer": "c",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "For a PID controller with transfer function $H(s) = K_p + \\frac{K_i}{s} + K_ds$, which term is most affected by measurement noise?",
+      "answers": {
+        "a": "Proportional term ($K_p$)",
+        "b": "Integral term ($K_i$)",
+        "c": "Derivative term ($K_d$)",
+        "d": "All terms equally"
+      },
+      "explanations": {
+        "a": "Incorrect. Proportional term is less sensitive to noise",
+        "b": "Incorrect. Integral term actually helps filter noise",
+        "c": "Correct! The derivative term amplifies high-frequency noise",
+        "d": "Incorrect. Different terms have different noise sensitivity"
+      },
+      "correctAnswer": "c",
+      "difficulty": "advanced"
     }
   ]
 }
