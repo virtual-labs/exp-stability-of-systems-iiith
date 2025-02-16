@@ -262,8 +262,10 @@ th {
 
   /* Better observations panel */
   .box-question {
-      padding: 1rem;
+      /* padding: 1rem; */
       margin-bottom: 1rem;
+      margin-left: 1rem;
+      
   }
 
   .v-datalist-title {
