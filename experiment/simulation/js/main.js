@@ -1,3 +1,4 @@
+// TODO: errata correct that it's 100 steps and not 100 seconds
 function openPart(evt, name) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -186,13 +187,13 @@ var iter = 0;
 var temperatures = [];
 
 function PIDTemperature(){
-    
+
     iter = 0;
 
     var plotDiv = document.getElementById("figure3");
     Plotly.purge(plotDiv);
-    
-    
+
+
     temperatures = [];
     var currentTemp = document.getElementById("temp").value;
     currentTemperature = parseFloat(currentTemp);
@@ -214,7 +215,7 @@ function PIDTemperature(){
     const intervalId = setInterval(() => {
     // Update the error and calculate the PID output
     var error = setpoint - currentTemperature;
-    
+
     if(iter>50)
     {
         var element = document.getElementById("result1")
@@ -239,7 +240,7 @@ function PIDTemperature(){
         {
             yt.push(setpoint);
         }
-        
+
         var trace = {
             x: xt,
             y: temperatures,
@@ -256,9 +257,9 @@ function PIDTemperature(){
                 width: 2       // Line width
             }
         };
-    
+
         var data = [trace,trace2];
-    
+
         //var config = {responsive: true}
         var layout1 = {
             title: 'Temperature Control',
@@ -270,9 +271,9 @@ function PIDTemperature(){
                 title: 'Temperature (°C)'
             }
         };
-          
+
         Plotly.newPlot('figure3', data, layout1);
-                
+
         if(screen.width < 400)
         {
             var update = {
@@ -287,7 +288,7 @@ function PIDTemperature(){
                 height: 400
             };
         }
-    
+
         Plotly.relayout('figure3', update);
         flag = 1;
         var element = document.getElementById("result1")
@@ -298,13 +299,13 @@ function PIDTemperature(){
     }
 
     var output = calculatePIDOutput(error, kp, ki, kd);
-  
+
     // Apply the output to control the system (e.g., adjust heating/cooling power)
     adjustSystem(output);
-  
+
     // Simulate the system's response by updating the current temperature
     simulateSystemResponse();
-    
+
     if(flag==0)
     {
         // Log the current temperature and PID output for demonstration
@@ -327,7 +328,7 @@ function PIDTemperature(){
         {
             yt.push(setpoint);
         }
-        
+
         var trace = {
             x: xt,
             y: temperatures,
@@ -344,9 +345,9 @@ function PIDTemperature(){
                 width: 2       // Line width
             }
         };
-    
+
         var data = [trace,trace2];
-    
+
         //var config = {responsive: true}
         var layout1 = {
             title: 'Temperature Control',
@@ -358,9 +359,9 @@ function PIDTemperature(){
                 title: 'Temperature (°C)'
             }
         };
-          
+
         Plotly.newPlot('figure3', data, layout1);
-                
+
         if(screen.width < 400)
         {
             var update = {
@@ -375,13 +376,13 @@ function PIDTemperature(){
                 height: 400
             };
         }
-    
+
         Plotly.relayout('figure3', update);
     }
-  
+
     iter++;
     temperatures.push(currentTemperature);
-  
+
     }, interval);
 }
 
@@ -390,38 +391,38 @@ function calculatePIDOutput(error, kp, ki, kd) {
     // Static variables to maintain state between calls
     if (typeof this.integral === 'undefined') this.integral = 0;
     if (typeof this.lastError === 'undefined') this.lastError = error;
-    
+
     // Calculate PID terms
     const proportional = kp * error;
-    
+
     // Integrate error over time (use trapezoidal integration)
     this.integral += error * (interval/1000); // interval is in ms, convert to seconds
     const integral = ki * this.integral;
-    
+
     // Calculate derivative (rate of change)
     const derivative = kd * (error - this.lastError) / (interval/1000);
     this.lastError = error;
-  
+
     // Return combined PID output
     return proportional + integral + derivative;
   }
-  
+
   // Function to adjust the system with more realistic behavior
   function adjustSystem(output) {
     // Add thermal mass simulation - system can't change temperature instantly
     const thermalMass = 0.1; // Lower = faster response
     const maxDeltaT = 5.0; // Maximum temperature change per interval
-    
+
     // Calculate desired temperature change
     let deltaT = output * thermalMass;
-    
+
     // Limit maximum temperature change per interval
     deltaT = Math.min(Math.max(deltaT, -maxDeltaT), maxDeltaT);
-    
+
     // Update current temperature
     currentTemperature += deltaT;
   }
-  
+
   // Function to simulate the system's response with noise and disturbances
   function simulateSystemResponse() {
     const noiseLevels = {
@@ -434,22 +435,22 @@ function calculatePIDOutput(error, kp, ki, kd) {
     // Get selected noise level
     const noiseLevel = document.getElementById("noiseLevel").value;
     const noiseFactor = noiseLevels[noiseLevel];
-    
+
     // Add random noise based on selected level
     const noise = (Math.random() - 0.5) * noiseFactor;
-    
+
     // Add environmental influence
     const environmentalFactor = (setpoint - currentTemperature) * 0.01;
-    
+
     // Update temperature with noise and environmental factors
     currentTemperature += noise + environmentalFactor;
 }
 
 function simulateSystemResponseQ() {
-    
+
     // Add environmental influence
     const environmentalFactor = (setpoint - currentTemperature) * 0.01;
-    
+
     // Update temperature with noise and environmental factors
     currentTemperature += environmentalFactor;
 }
@@ -640,16 +641,16 @@ function generateRandomCustomSystem() {
     let aVal, bVal, cVal, dVal;
 
     if (stabilityFactor > 0.5) {
-        aVal = (Math.random() * 4 - 2).toFixed(2); 
-        bVal = (Math.random() * 4 - 2).toFixed(2); 
-        cVal = (Math.random() * 4 - 2).toFixed(2); 
-        dVal = (Math.random() * 4 - 2).toFixed(2); 
+        aVal = (Math.random() * 4 - 2).toFixed(2);
+        bVal = (Math.random() * 4 - 2).toFixed(2);
+        cVal = (Math.random() * 4 - 2).toFixed(2);
+        dVal = (Math.random() * 4 - 2).toFixed(2);
     } else {
-        
-        aVal = (Math.random() * 2 - 1).toFixed(2); 
-        bVal = (Math.random() * 2 - 1).toFixed(2); 
-        cVal = (Math.random() * 2 - 1).toFixed(2); 
-        dVal = (Math.random() * 2 - 1).toFixed(2); 
+
+        aVal = (Math.random() * 2 - 1).toFixed(2);
+        bVal = (Math.random() * 2 - 1).toFixed(2);
+        cVal = (Math.random() * 2 - 1).toFixed(2);
+        dVal = (Math.random() * 2 - 1).toFixed(2);
     }
 
     document.getElementById("aValQuiz").value = aVal;
@@ -892,7 +893,7 @@ function ROCQuiz()
 
     var flag = 1;
 
-  
+
     const yesRadio = document.querySelector('input[name="yesno"][value="yes"]');
     const noRadio = document.querySelector('input[name="yesno"][value="no"]');
 
@@ -972,13 +973,13 @@ function ROCQuiz()
 // ------------------------------------- Temp PID Quiz -----------------------------------------------
 
 function PIDTemperatureQuiz(){
-    
+
     iter = 0;
 
     var plotDiv = document.getElementById("figure4");
     Plotly.purge(plotDiv);
-    
-    
+
+
     temperatures = [];
     currentTemperature = 10;
 
@@ -998,13 +999,13 @@ function PIDTemperatureQuiz(){
     const intervalId = setInterval(() => {
     // Update the error and calculate the PID output
     var error = setpoint - currentTemperature;
-    
+
     if(iter>60)
     {
         var element = document.getElementById("result4")
         element.style.color = "#FF0000";
         element.style.fontWeight = "bold";
-        element.innerHTML = 'The system is did not reach setpoint in 100sec!!';
+        element.innerHTML = 'The system is did not reach setpoint in 100 steps!!';
         flag = 1;
         clearInterval(intervalId);
     }
@@ -1025,7 +1026,7 @@ function PIDTemperatureQuiz(){
         {
             yt.push(setpoint);
         }
-        
+
         var trace = {
             x: xt,
             y: temperatures,
@@ -1042,9 +1043,9 @@ function PIDTemperatureQuiz(){
                 width: 2       // Line width
             }
         };
-    
+
         var data = [trace,trace2];
-    
+
         //var config = {responsive: true}
         var layout1 = {
             title: 'Temperature Control',
@@ -1056,9 +1057,9 @@ function PIDTemperatureQuiz(){
                 title: 'Temperature (°C)'
             }
         };
-          
+
         Plotly.newPlot('figure4', data, layout1);
-                
+
         if(screen.width < 400)
         {
             var update = {
@@ -1073,7 +1074,7 @@ function PIDTemperatureQuiz(){
                 height: 400
             };
         }
-    
+
         Plotly.relayout('figure4', update);
         flag = 1;
         var element = document.getElementById("result4")
@@ -1084,13 +1085,13 @@ function PIDTemperatureQuiz(){
     }
 
     var output = calculatePIDOutput(error, kp, ki, kd);
-  
+
     // Apply the output to control the system (e.g., adjust heating/cooling power)
     adjustSystem(output);
-  
+
     // Simulate the system's response by updating the current temperature
     simulateSystemResponseQ();
-    
+
     if(flag==0)
     {
         // Log the current temperature and PID output for demonstration
@@ -1113,7 +1114,7 @@ function PIDTemperatureQuiz(){
         {
             yt.push(setpoint);
         }
-        
+
         var trace = {
             x: xt,
             y: temperatures,
@@ -1130,9 +1131,9 @@ function PIDTemperatureQuiz(){
                 width: 2       // Line width
             }
         };
-    
+
         var data = [trace,trace2];
-    
+
         //var config = {responsive: true}
         var layout1 = {
             title: 'Temperature Control',
@@ -1144,9 +1145,9 @@ function PIDTemperatureQuiz(){
                 title: 'Temperature (°C)'
             }
         };
-          
+
         Plotly.newPlot('figure4', data, layout1);
-                
+
         if(screen.width < 400)
         {
             var update = {
@@ -1161,13 +1162,13 @@ function PIDTemperatureQuiz(){
                 height: 400
             };
         }
-    
+
         Plotly.relayout('figure4', update);
     }
-  
+
     iter++;
     temperatures.push(currentTemperature);
-  
+
     }, interval);
 }
 
