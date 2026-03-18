@@ -1,4 +1,5 @@
 // TODO: errata correct that it's 100 steps and not 100 seconds
+// TODO: system stability quiz is for descrete and not continuos mention that!
 function openPart(evt, name) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -682,14 +683,14 @@ function checkCustomSystemStability() {
     // Plot results
     var trace = {
         x: nData,
-        y: xData.map(val => val.re), // Plot the real part
+        y: xData.map(val => math.abs(val))
         type: 'scatter',
         mode: 'lines'
     };
     var layout = {
-        title: 'Custom System Response',
+        title: 'Absolute Impulse Response',
         xaxis: { title: 'n' },
-        yaxis: { title: 'x(n)' }
+        yaxis: { title: '|x[n]|' }
     };
     Plotly.newPlot('customSystemQuizPlot', [trace], layout);
 
