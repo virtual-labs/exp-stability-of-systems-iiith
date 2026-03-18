@@ -683,7 +683,7 @@ function checkCustomSystemStability() {
     // Plot results
     var trace = {
         x: nData,
-        y: xData.map(val => math.abs(val))
+        y: xData.map(val => math.abs(val)),
         type: 'scatter',
         mode: 'lines'
     };
