@@ -125,9 +125,9 @@ function sPlane() {
     var resDiv = document.getElementById("pidFeedbackResult");
     if (resDiv) {
         if (isStable) {
-            resDiv.innerHTML = '<span style="color: green; font-weight:bold;">System is Stable (Largest real pole < 0)</span>';
+            resDiv.innerHTML = '<span style="color: green; font-weight:bold;">System is Stable (Real Part of Rightmost Pole < 0)</span>';
         } else {
-            resDiv.innerHTML = '<span style="color: red; font-weight:bold;">System is Unstable (Largest real pole &ge; 0)</span>';
+            resDiv.innerHTML = '<span style="color: red; font-weight:bold;">System is Unstable (Real Part of the Rightmost Pole &ge; 0)</span>';
         }
     }
 
@@ -255,9 +255,9 @@ function PIDTemperature(){
     var resDiv = document.getElementById("pidTempStabilityResult");
     if (resDiv) {
         if (isStable) {
-            resDiv.innerHTML = '<span style="color: green; font-weight:bold;">System is Stable (Largest real pole < 0)</span><br>';
+            resDiv.innerHTML = '<span style="color: green; font-weight:bold;">System is Stable (Real part of the Rightmost Pole < 0)</span><br>';
         } else {
-            resDiv.innerHTML = '<span style="color: red; font-weight:bold;">System is Unstable (Largest real pole &ge; 0)</span><br>';
+            resDiv.innerHTML = '<span style="color: red; font-weight:bold;">System is Unstable ( Real part of the Rightmost Pole &ge; 0)</span><br>';
         }
     }
 
