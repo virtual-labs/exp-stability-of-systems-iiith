@@ -81,6 +81,9 @@
 				<div class="box-question">
 					<div class="v-datalist-title">Observations</div>
 					<div id="observations1">
+						<div class="v-datalist-row">
+							<div id="pidFeedbackResult"></div>
+						</div>
 						<div id='figure1'></div>
 						<div id='figure2'></div>
 					</div>
@@ -151,6 +154,7 @@
 					<div class="v-datalist-title">Observations</div>
 					<div id="observations1">
 						<div class="v-datalist-row">
+							<div id="pidTempStabilityResult"></div>
 							<div id="result1"></div>
 						</div>
 						<div id='figure3'></div>
@@ -461,7 +465,7 @@
 									<li> Enter value for kp (proportional constant) </li>
 									<li> Enter value for ki (integral constant) </li>
 									<li> Enter value for kd (differential constant) </li>
-									<li> For the given current temperature, you are expected to reach the given set temperature within 100 seconds </li>
+									<li> For the given current temperature, you are expected to reach the given set temperature within 100 steps. <strong>Note: A medium amount of noise is added in the simulation.</strong> </li>
 									<li> Click on the "Simulate & Check" button to see a live simulation and verify your answer and get feedback observations on the right </li>
 								</ol>
 							</h3>
@@ -486,7 +490,7 @@
 			<div class="column is-7-desktop is-10-tablet is-10-mobile">
 				<div class="box-question">
 					<figure class="expandable-figure">
-						<img src="./images/pid.jpg" alt="PID Controller">
+						<img src="./images/pid1.jpg" alt="PID Controller">
 					</figure>
 				</div>
 			</div>

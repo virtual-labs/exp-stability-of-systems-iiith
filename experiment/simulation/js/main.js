@@ -1,5 +1,9 @@
-// TODO: errata correct that it's 100 steps and not 100 seconds
-// TODO: system stability quiz is for descrete and not continuos mention that!
+// TODO: on PID Temperature Controlller stop after 100 or 200 iterations
+// TODO: better the stopping criteria, we can just use poles and zeroes we got and know if it's stables or not and then calculate if it's going to reach or not, we can say that it's a stable System
+// logic: largest real value of the pole should be < 0 for stability
+// TODO: also show in observation inside of PID Feedback System that it's stable or unstable
+// TODO: in Quiz 2 change the image with the noise same as PID Temperature one, and add in instruction that medium amount of noise is added in the simulation
+// TODO: remove seconds and just keep indexed steps, 3rd tab should be till 250 steps and the quiz for 100 steps
 function openPart(evt, name) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -104,6 +108,26 @@ function sPlane() {
             zerosReal.push(-(kp - Math.sqrt(inside)) / (2 * kd));
             zerosImag.push(0);
             zerosImag.push(0);
+        }
+    }
+
+    var isStable = true;
+    var maxPoleReal = -Infinity;
+    for (var i = 0; i < polesReal.length; i++) {
+        if (polesReal[i] > maxPoleReal) {
+            maxPoleReal = polesReal[i];
+        }
+    }
+    if (maxPoleReal >= 0) {
+        isStable = false;
+    }
+
+    var resDiv = document.getElementById("pidFeedbackResult");
+    if (resDiv) {
+        if (isStable) {
+            resDiv.innerHTML = '<span style="color: green; font-weight:bold;">System is Stable (Largest real pole < 0)</span>';
+        } else {
+            resDiv.innerHTML = '<span style="color: red; font-weight:bold;">System is Unstable (Largest real pole &ge; 0)</span>';
         }
     }
 
@@ -212,26 +236,66 @@ function PIDTemperature(){
     temperatures.push(currentTemp);
     var flag = 0;
 
+    var isStable = true;
+    if (kd === 0) {
+        if (-ki / kp >= 0) isStable = false;
+    } else {
+        var inside = ((1 + kp) * (1 + kp)) - 4 * kd * ki;
+        var pR1, pR2;
+        if (inside < 0) {
+            pR1 = -(1 + kp) / (2 * kd);
+            pR2 = -(1 + kp) / (2 * kd);
+        } else {
+            pR1 = -(1 + kp + Math.sqrt(inside)) / (2 * kd);
+            pR2 = -(1 + kp - Math.sqrt(inside)) / (2 * kd);
+        }
+        if (pR1 >= 0 || pR2 >= 0) isStable = false;
+    }
+
+    var resDiv = document.getElementById("pidTempStabilityResult");
+    if (resDiv) {
+        if (isStable) {
+            resDiv.innerHTML = '<span style="color: green; font-weight:bold;">System is Stable (Largest real pole < 0)</span><br>';
+        } else {
+            resDiv.innerHTML = '<span style="color: red; font-weight:bold;">System is Unstable (Largest real pole &ge; 0)</span><br>';
+        }
+    }
+
     // Main control loop
     const intervalId = setInterval(() => {
     // Update the error and calculate the PID output
     var error = setpoint - currentTemperature;
 
-    if(iter>50)
+    if(iter>200)
     {
         var element = document.getElementById("result1")
         element.style.color = "#FF0000";
         element.style.fontWeight = "bold";
-        element.innerHTML = 'The system is unstable! Set point cannot be reached';
+        if (!isStable) {
+            element.innerHTML = 'The system is unstable! Set point cannot be reached.';
+        } else {
+            element.innerHTML = 'The system is stable, but did not reach setpoint in 200 steps.';
+        }
+        clearInterval(intervalId);
+        return;
     }
 
-    if((Math.abs(error) < 1e-2))
+    if (!isStable && Math.abs(error) > 1000) {
+        var element = document.getElementById("result1")
+        element.style.color = "#FF0000";
+        element.style.fontWeight = "bold";
+        element.innerHTML = 'The system is unstable! Set point cannot be reached.';
+        clearInterval(intervalId);
+        flag = 1;
+    }
+
+    if((Math.abs(error) < 1e-2) && !flag)
     {
         var xt = [];
 
         for(var i=0; i<=iter; i++)
         {
-            xt.push(i/2);
+            xt.push(i);
         }
 
         var yt = [];
@@ -266,7 +330,7 @@ function PIDTemperature(){
             title: 'Temperature Control',
             showlegend: false,
             xaxis: {
-                title: 'Time (s)'
+                title: 'Steps'
             },
             yaxis: {
                 title: 'Temperature (°C)'
@@ -319,7 +383,7 @@ function PIDTemperature(){
 
         for(var i=0; i<=iter; i++)
         {
-            xt.push(i/2);
+            xt.push(i);
         }
 
         var yt = [];
@@ -354,7 +418,7 @@ function PIDTemperature(){
             title: 'Temperature Control',
             showlegend: false,
             xaxis: {
-                title: 'Time (s)'
+                title: 'Steps'
             },
             yaxis: {
                 title: 'Temperature (°C)'
@@ -448,12 +512,14 @@ function calculatePIDOutput(error, kp, ki, kd) {
 }
 
 function simulateSystemResponseQ() {
+    const noiseFactor = 1; // medium noise
+    const noise = (Math.random() - 0.5) * noiseFactor;
 
     // Add environmental influence
     const environmentalFactor = (setpoint - currentTemperature) * 0.01;
 
     // Update temperature with noise and environmental factors
-    currentTemperature += environmentalFactor;
+    currentTemperature += noise + environmentalFactor;
 }
 // -------------------------------------------- Separate -------------------------------------------------------------------
 
@@ -996,28 +1062,58 @@ function PIDTemperatureQuiz(){
     temperatures.push(currentTemperature);
     var flag = 0;
 
+    var isStable = true;
+    if (kd === 0) {
+        if (-ki / kp >= 0) isStable = false;
+    } else {
+        var inside = ((1 + kp) * (1 + kp)) - 4 * kd * ki;
+        var pR1, pR2;
+        if (inside < 0) {
+            pR1 = -(1 + kp) / (2 * kd);
+            pR2 = -(1 + kp) / (2 * kd);
+        } else {
+            pR1 = -(1 + kp + Math.sqrt(inside)) / (2 * kd);
+            pR2 = -(1 + kp - Math.sqrt(inside)) / (2 * kd);
+        }
+        if (pR1 >= 0 || pR2 >= 0) isStable = false;
+    }
+
     // Main control loop
     const intervalId = setInterval(() => {
     // Update the error and calculate the PID output
     var error = setpoint - currentTemperature;
 
-    if(iter>60)
+    if(iter>100)
     {
-        var element = document.getElementById("result4")
+        var element = document.getElementById("result4");
         element.style.color = "#FF0000";
         element.style.fontWeight = "bold";
-        element.innerHTML = 'The system is did not reach setpoint in 100 steps!!';
+        if (!isStable) {
+            element.innerHTML = 'The system is unstable! Set point cannot be reached.';
+        } else {
+            element.innerHTML = 'System did not reach setpoint in 100 steps!!';
+        }
+        flag = 1;
+        clearInterval(intervalId);
+        return;
+    }
+
+    if (!isStable && Math.abs(error) > 1000) {
+        var element = document.getElementById("result4");
+        element.style.color = "#FF0000";
+        element.style.fontWeight = "bold";
+        element.innerHTML = 'The system is unstable! Set point cannot be reached.';
         flag = 1;
         clearInterval(intervalId);
     }
 
-    if((Math.abs(error) < 1e-2))
+    if((Math.abs(error) < 1e-2) && !flag)
     {
         var xt = [];
 
         for(var i=0; i<=iter; i++)
         {
-            xt.push(i/2);
+            xt.push(i);
         }
 
         var yt = [];
@@ -1052,7 +1148,7 @@ function PIDTemperatureQuiz(){
             title: 'Temperature Control',
             showlegend: false,
             xaxis: {
-                title: 'Time (s)'
+                title: 'Steps'
             },
             yaxis: {
                 title: 'Temperature (°C)'
@@ -1081,7 +1177,7 @@ function PIDTemperatureQuiz(){
         var element = document.getElementById("result4")
         element.style.color = "#006400";
         element.style.fontWeight = "bold";
-        element.innerHTML = 'Setpoint Temperature reached within 100sec!!';
+        element.innerHTML = 'Setpoint Temperature reached within 100 steps!!';
         clearInterval(intervalId);
     }
 
@@ -1105,7 +1201,7 @@ function PIDTemperatureQuiz(){
 
         for(var i=0; i<=iter; i++)
         {
-            xt.push(i/2);
+            xt.push(i);
         }
 
         var yt = [];
@@ -1140,7 +1236,7 @@ function PIDTemperatureQuiz(){
             title: 'Temperature Control',
             showlegend: false,
             xaxis: {
-                title: 'Time (s)'
+                title: 'Steps'
             },
             yaxis: {
                 title: 'Temperature (°C)'
