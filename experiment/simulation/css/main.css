@@ -1,1 +1,290 @@
-/* You CSS goes in here */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Common Components */
+.buttonTotal {
+    display: block;
+    width: 80%;
+    height: 20%;
+    font-size: 100%;
+    position: relative;
+    padding: 10px 20px;
+    background-color: #98CB3B;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-left: 0%;
+    margin-top: 10%;
+}
+
+.buttonTotal:hover {
+    background-color: #2C9AD1;
+    transform: scale(1.05);
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+
+.tab button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #98CB3B;
+    color: #176696;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+table, td, tr {
+    padding: 10%;
+    border: 3px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    border: 3px solid black;
+    background-color: #AAA;
+}
+
+.expandable-figure {
+    max-width: 100%;
+    cursor: pointer;
+    margin-left: -5%;
+    margin-top: 10%;
+}
+
+.expanded {
+    max-width: none;
+}
+
+/* Desktop (≥1024px) */
+@media (min-width: 1024px) {
+    .max-width {
+        max-width: 1300px;
+        padding: 0 80px;
+        margin: auto;
+    }
+
+    section .title {
+        position: relative;
+        text-align: center;
+        color: #000000;
+        font-size: 40px;
+        font-weight: 500;
+        margin-top: 5%;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    .fre {
+        display: flex;
+        color: #000000;
+        background-size: cover;
+        background-attachment: fixed;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    .fill1 {
+        position: relative;
+        margin-left: 10%;
+        margin-top: 40%;
+        top: 0%;
+        left: 0%;
+        transform: translate(-50%, -50%);
+        float: left;
+    }
+
+    .form1 {
+        position: relative;
+        margin-left: -20%;
+        margin-top: 30%;
+        margin-bottom: 20%;
+    }
+
+    .figureLast {
+        margin-left: -50%;
+    }
+}
+
+/* Tablet (768px-1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .max-width {
+        max-width: 1024px;
+        padding: 0 40px;
+        margin: auto;
+    }
+
+    section .title {
+        position: relative;
+        text-align: center;
+        color: #000000;
+        font-size: 35px;
+        font-weight: 500;
+        margin-top: 8%;
+        width: 90%;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    .fre {
+        display: flex;
+        color: #000000;
+        background-size: cover;
+        background-attachment: fixed;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    .fill1 {
+        position: relative;
+        margin-left: 25%;
+        margin-top: 20%;
+        top: 0%;
+        left: 0%;
+        transform: translate(-50%, -50%);
+        float: left;
+    }
+
+    .form1 {
+        position: relative;
+        margin-left: -20%;
+        margin-top: 30%;
+        margin-bottom: 20%;
+    }
+
+    .figureLast {
+        margin-left: -30%;
+    }
+}
+
+/* Mobile (<768px) */
+@media (max-width: 767px) {
+  .max-width {
+      max-width: 100%;
+      padding: 0 15px;
+  }
+
+  /* Adjust column widths for mobile */
+  .column.is-2-desktop.is-4-tablet.is-10-mobile {
+      width: 100%;
+      margin-bottom: 1rem;
+  }
+
+  .column.is-7-desktop.is-10-tablet.is-10-mobile {
+      width: 100%;
+      margin-bottom: 1rem;
+  }
+
+  .column.is-3-desktop.is-10-tablet.is-5-mobile {
+      width: 100%;
+  }
+
+  /* Improve plot visibility */
+  #figure1, #figure2, #figure3, #figure4, 
+  #customSystemQuizPlot, #secondOrderQuizPlot, 
+  #poleZeroQuizPlot {
+      width: 100% !important;
+      height: 300px !important;
+  }
+
+  /* Better image handling */
+  .expandable-figure {
+      margin: 0;
+      width: 100%;
+  }
+
+  .expandable-figure img {
+      width: 100%;
+      height: auto;
+  }
+
+  /* Improved form layout */
+  .fill1 {
+      margin: 0.5rem 0;
+      width: 100%;
+  }
+
+  .fill1 input, .fill1 select {
+      width: 100%;
+      max-width: none;
+  }
+
+  /* Better observations panel */
+  .box-question {
+      /* padding: 1rem; */
+      margin-bottom: 1rem;
+      margin-left: 1rem;
+      
+  }
+
+  .v-datalist-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+  }
+
+  /* Adjust button width */
+  .buttonTotal {
+      width: 100%;
+      margin: 1rem 0;
+  }
+
+  /* Better spacing for radio buttons */
+  .form1 {
+      margin: 1rem 0;
+  }
+
+  .form1 label {
+      margin-right: 1rem;
+  }
+}
