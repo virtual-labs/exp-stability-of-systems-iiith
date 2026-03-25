@@ -1,6 +1,6 @@
 ### Procedure
 
-####  System Stability Quiz
+#### System Stability Quiz
 
 This section aims to test the understanding of stability of custom systems with complex numbers. The system is given as $(a + ib)^n u(n) + (c + id)^n u(n)$. Steps to be done are as follows:
 
@@ -45,19 +45,7 @@ This section aims to visualize the live temperature changes and the time-dynamic
 
 The plot is obtained and it shows the live temperature changes based on the given parameters for the PID-based temperature controller. The blue curve is the current temperature and the red line is the target temperature.
 
-
-#### Quiz 1
-
-This section aims to test the understanding of stability of systems from an s-transform based perspective. There is a system provided in the figure. Firstly, it is expected that the transfer function of the same is calculated. Further, the following questions should be answered with the steps as follows:
-
-1. Select if the system given in the figure with the provided constants (in blue below) is stable or not
-2. Enter the poles separated with commas
-3. Truncate the values to 2 decimal places, i.e., 2.348 should be 2.34
-4. Click on the "Check" button to verify your answer and get feedback observations on the right
-
-Feedback is obtained on the right side in the observations panel.
-
-#### Quiz 2
+#### Quiz
 
 This section aims to test the understanding of speed of operation of the PID-based temperature control of a room. The transfer function H(s) of a PID controller is given as $H(s) = k_{p} + \frac{1}{s} k_{i} + s k_{d}$. The system (Task) is a room, with different levels of noise, that is, it is assumed that the room randomly changes its current temperature. The target is to reach the goal in 100 seconds. Click on the "**Simulate & Check**" button to visualize the live plotting of the temperature of the room. Steps to be done are as follows:
 
@@ -68,3 +56,4 @@ This section aims to test the understanding of speed of operation of the PID-bas
 5. Click on the "Simulate & Check" button to see a live simulation and verify your answer and get feedback observations on the right
 
 Feedback and live temperature plot are obtained on the right side in the observations panel.
+
