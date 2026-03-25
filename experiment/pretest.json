@@ -19,6 +19,20 @@
       "difficulty": "beginner"
     },
     {
+      "question": "Which of the following systems is not BIBO stable?",
+      "answers": {
+        "a": "$y(t) = x^2(t)$",
+        "b": "$y(t) = x(t^2)$",
+        "c": "$y(t) = t + x(t)$",
+        "d": "$y(t) = x(t)$"
+      },
+      "explanations": {
+        "c": "As $t$ increases, the output becomes unbounded."
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+    {
       "question": "A system has poles at $s = -1 \\pm j$. What can be said about its stability?",
       "answers": {
         "a": "Unstable because complex poles exist",
