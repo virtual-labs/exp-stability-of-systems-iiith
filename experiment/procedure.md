@@ -1,6 +1,4 @@
-### Procedure
-
-#### System Stability Quiz
+### System Stability Quiz
 
 This section aims to test the understanding of stability of custom systems with complex numbers. The system is given as $(a + ib)^n u(n) + (c + id)^n u(n)$. Steps to be done are as follows:
 
@@ -10,7 +8,7 @@ This section aims to test the understanding of stability of custom systems with 
 
 The plot is obtained and it shows the response of the custom system based on the given parameters.
 
-#### Second-Order System Stability Quiz
+### Second-Order System Stability Quiz
 
 This section aims to test the understanding of stability of second-order systems. The system is given as $y''(t) + 2ζω_n·y'(t) + ω_n²·y(t) = ω_n²$. Steps to be done are as follows:
 
@@ -20,7 +18,7 @@ This section aims to test the understanding of stability of second-order systems
 
 The plot is obtained and it shows the step response of the second-order system based on the given parameters.
 
-#### PID Controller
+### PID Controller
 
 This section aims to visualize the s-plane plot of a PID controller. This requires the filling in of kp, ki, and kd constants of a PID controller. The transfer function H(s) of a PID controller is given as $H(s) = k_{p} + \frac{1}{s} k_{i} + s k_{d}$. The system (Task) is a room, in a noiseless case (no external influence on temperature). Click on the "**Plot**" button to visualize the s-plane plot. Steps to be done are as follows:
 
@@ -31,7 +29,7 @@ This section aims to visualize the s-plane plot of a PID controller. This requir
 
 The plots are obtained and they are the s-plane plot ('+' for poles and 'o' for zeros).
 
-#### PID Temperature
+### PID Temperature
 
 This section aims to visualize the live temperature changes and the time-dynamics of a PID-based temperature-controlled room. This requires the filling in of current temperature, set temperature (target), and kp, ki, and kd constants of the PID-based temperature controller. The transfer function H(s) of a PID controller is given as $H(s) = k_{p} + \frac{1}{s} k_{i} + s k_{d}$. The system (Task) is a room, with different levels of noise, that is, it is assumed that the room randomly changes its current temperature. Click on the "**Simulate**" button to visualize the live plotting of the temperature of the room. Steps to be done are as follows:
 
@@ -45,7 +43,7 @@ This section aims to visualize the live temperature changes and the time-dynamic
 
 The plot is obtained and it shows the live temperature changes based on the given parameters for the PID-based temperature controller. The blue curve is the current temperature and the red line is the target temperature.
 
-#### Quiz
+### Quiz
 
 This section aims to test the understanding of speed of operation of the PID-based temperature control of a room. The transfer function H(s) of a PID controller is given as $H(s) = k_{p} + \frac{1}{s} k_{i} + s k_{d}$. The system (Task) is a room, with different levels of noise, that is, it is assumed that the room randomly changes its current temperature. The target is to reach the goal in 100 seconds. Click on the "**Simulate & Check**" button to visualize the live plotting of the temperature of the room. Steps to be done are as follows:
 
@@ -56,4 +54,3 @@ This section aims to test the understanding of speed of operation of the PID-bas
 5. Click on the "Simulate & Check" button to see a live simulation and verify your answer and get feedback observations on the right
 
 Feedback and live temperature plot are obtained on the right side in the observations panel.
-
